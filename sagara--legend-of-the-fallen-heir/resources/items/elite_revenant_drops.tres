@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ItemDropTable" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://resources/items/item_drop_table.gd" id="1_table"]
+[ext_resource type="Script" path="res://resources/items/item_drop_data.gd" id="2_data"]
+[ext_resource type="Resource" path="res://resources/items/jiwa_leluhur.tres" id="3_elite_soul"]
+[ext_resource type="Resource" path="res://resources/items/pemulih_hp.tres" id="4_heal"]
+
+[resource]
+script = ExtResource("1_table")
+entries = Array[ExtResource("2_data")]([ExtResource("3_elite_soul"), ExtResource("4_heal")])

@@ -1,0 +1,731 @@
+[gd_scene format=3 uid="uid://ckpygdigxnjei"]
+
+[ext_resource type="PackedScene" path="res://scenes/player/player.tscn" id="1_player"]
+[ext_resource type="PackedScene" path="res://scenes/hud.tscn" id="3_hud"]
+[ext_resource type="Script" uid="uid://qewon3m0ms0d" path="res://scripts/hazard_area.gd" id="4_hazard"]
+[ext_resource type="PackedScene" path="res://scenes/breakable_floor.tscn" id="5_breakable"]
+[ext_resource type="PackedScene" path="res://scenes/portal.tscn" id="6_portal"]
+[ext_resource type="PackedScene" path="res://scenes/chest.tscn" id="7_chest"]
+[ext_resource type="PackedScene" path="res://scenes/teleporter.tscn" id="8_teleporter"]
+[ext_resource type="PackedScene" path="res://scenes/enemies/melee_enemy.tscn" id="9_melee"]
+[ext_resource type="PackedScene" path="res://scenes/bosses/boss_arena_gate.tscn" id="12_boss_gate"]
+[ext_resource type="PackedScene" path="res://scenes/kayu_rapuh.tscn" id="13_wood"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lantai_desa"]
+size = Vector2(600, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lantai_hutan"]
+size = Vector2(800, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lantai_bawah"]
+size = Vector2(1640, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_batas_kiri"]
+size = Vector2(40, 480)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tebing_jurang"]
+size = Vector2(40, 340)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dinding_tinggi"]
+size = Vector2(40, 880)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_platform_atas"]
+size = Vector2(180, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_puncak"]
+size = Vector2(300, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_platform_bawah"]
+size = Vector2(160, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jurang_bawah"]
+size = Vector2(3600, 200)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_duri"]
+size = Vector2(120, 20)
+
+[node name="World" type="Node2D" unique_id=595366093]
+
+[node name="BiomeBackground" type="Node2D" parent="." unique_id=1966555034]
+z_index = -10
+
+[node name="Langit" type="ColorRect" parent="BiomeBackground" unique_id=2030459817]
+offset_left = -2600.0
+offset_top = -1600.0
+offset_right = 3000.0
+offset_bottom = 1100.0
+mouse_filter = 2
+color = Color(0.05, 0.08, 0.07, 1)
+
+[node name="BambooA" type="ColorRect" parent="BiomeBackground" unique_id=1512566409]
+offset_left = -1500.0
+offset_top = -900.0
+offset_right = -1476.0
+offset_bottom = 700.0
+mouse_filter = 2
+color = Color(0.08, 0.16, 0.11, 1)
+
+[node name="BambooB" type="ColorRect" parent="BiomeBackground" unique_id=820821641]
+offset_left = -1220.0
+offset_top = -1050.0
+offset_right = -1192.0
+offset_bottom = 700.0
+mouse_filter = 2
+color = Color(0.09, 0.18, 0.12, 1)
+
+[node name="BambooC" type="ColorRect" parent="BiomeBackground" unique_id=1989237960]
+offset_left = -930.0
+offset_top = -1100.0
+offset_right = -902.0
+offset_bottom = 700.0
+mouse_filter = 2
+color = Color(0.07, 0.14, 0.1, 1)
+
+[node name="BambooD" type="ColorRect" parent="BiomeBackground" unique_id=527826471]
+offset_left = -610.0
+offset_top = -980.0
+offset_right = -584.0
+offset_bottom = 700.0
+mouse_filter = 2
+color = Color(0.1, 0.2, 0.13, 1)
+
+[node name="BambooE" type="ColorRect" parent="BiomeBackground" unique_id=802704297]
+offset_left = -280.0
+offset_top = -1120.0
+offset_right = -252.0
+offset_bottom = 700.0
+mouse_filter = 2
+color = Color(0.08, 0.16, 0.11, 1)
+
+[node name="BambooF" type="ColorRect" parent="BiomeBackground" unique_id=1396497276]
+offset_left = 80.0
+offset_top = -1020.0
+offset_right = 106.0
+offset_bottom = 700.0
+mouse_filter = 2
+color = Color(0.1, 0.19, 0.12, 1)
+
+[node name="BambooG" type="ColorRect" parent="BiomeBackground" unique_id=352857112]
+offset_left = 450.0
+offset_top = -1100.0
+offset_right = 480.0
+offset_bottom = 700.0
+mouse_filter = 2
+color = Color(0.07, 0.15, 0.1, 1)
+
+[node name="BambooH" type="ColorRect" parent="BiomeBackground" unique_id=833994332]
+offset_left = 840.0
+offset_top = -960.0
+offset_right = 866.0
+offset_bottom = 700.0
+mouse_filter = 2
+color = Color(0.09, 0.17, 0.11, 1)
+
+[node name="BambooI" type="ColorRect" parent="BiomeBackground" unique_id=2069745589]
+offset_left = 1160.0
+offset_top = -1080.0
+offset_right = 1190.0
+offset_bottom = 700.0
+mouse_filter = 2
+color = Color(0.08, 0.16, 0.1, 1)
+
+[node name="BambooJ" type="ColorRect" parent="BiomeBackground" unique_id=1671365967]
+offset_left = 1420.0
+offset_top = -1000.0
+offset_right = 1452.0
+offset_bottom = 700.0
+mouse_filter = 2
+color = Color(0.1, 0.2, 0.13, 1)
+
+[node name="KabutBawah" type="ColorRect" parent="BiomeBackground" unique_id=1418447603]
+offset_left = -2600.0
+offset_top = 220.0
+offset_right = 3000.0
+offset_bottom = 1100.0
+mouse_filter = 2
+color = Color(0.08, 0.16, 0.11, 0.55)
+
+[node name="GerbangKiri" type="ColorRect" parent="BiomeBackground" unique_id=183211712]
+offset_left = -1400.0
+offset_top = 60.0
+offset_right = -1378.0
+offset_bottom = 240.0
+mouse_filter = 2
+color = Color(0.18, 0.13, 0.08, 1)
+
+[node name="GerbangKanan" type="ColorRect" parent="BiomeBackground" unique_id=957786265]
+offset_left = -1182.0
+offset_top = 60.0
+offset_right = -1160.0
+offset_bottom = 240.0
+mouse_filter = 2
+color = Color(0.18, 0.13, 0.08, 1)
+
+[node name="GerbangAtas" type="ColorRect" parent="BiomeBackground" unique_id=2126804928]
+offset_left = -1420.0
+offset_top = 36.0
+offset_right = -1140.0
+offset_bottom = 64.0
+mouse_filter = 2
+color = Color(0.22, 0.16, 0.09, 1)
+
+[node name="LantaiDesa" type="StaticBody2D" parent="." unique_id=1495894346]
+position = Vector2(-1200, 260)
+
+[node name="ColorRect" type="ColorRect" parent="LantaiDesa" unique_id=1272559168]
+offset_left = -300.0
+offset_top = -20.0
+offset_right = 300.0
+offset_bottom = 20.0
+mouse_filter = 2
+color = Color(0.13, 0.2, 0.13, 1)
+
+[node name="Grass" type="ColorRect" parent="LantaiDesa" unique_id=971368788]
+offset_left = -300.0
+offset_top = -20.0
+offset_right = 300.0
+offset_bottom = -11.0
+mouse_filter = 2
+color = Color(0.24, 0.42, 0.22, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LantaiDesa" unique_id=465513117]
+shape = SubResource("RectangleShape2D_lantai_desa")
+
+[node name="LantaiHutan" type="StaticBody2D" parent="." unique_id=522784913]
+position = Vector2(1100, 260)
+
+[node name="ColorRect" type="ColorRect" parent="LantaiHutan" unique_id=1258175245]
+offset_left = -400.0
+offset_top = -20.0
+offset_right = 400.0
+offset_bottom = 20.0
+mouse_filter = 2
+color = Color(0.12, 0.18, 0.12, 1)
+
+[node name="Grass" type="ColorRect" parent="LantaiHutan" unique_id=1607488249]
+offset_left = -400.0
+offset_top = -20.0
+offset_right = 400.0
+offset_bottom = -11.0
+mouse_filter = 2
+color = Color(0.22, 0.4, 0.2, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LantaiHutan" unique_id=781889800]
+shape = SubResource("RectangleShape2D_lantai_hutan")
+
+[node name="LantaiBawah" type="StaticBody2D" parent="." unique_id=734751900]
+position = Vector2(-100, 580)
+
+[node name="ColorRect" type="ColorRect" parent="LantaiBawah" unique_id=223344761]
+offset_left = -820.0
+offset_top = -20.0
+offset_right = 820.0
+offset_bottom = 20.0
+mouse_filter = 2
+color = Color(0.09, 0.13, 0.1, 1)
+
+[node name="Grass" type="ColorRect" parent="LantaiBawah" unique_id=1311745896]
+offset_left = -820.0
+offset_top = -20.0
+offset_right = 820.0
+offset_bottom = -11.0
+mouse_filter = 2
+color = Color(0.16, 0.28, 0.16, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LantaiBawah" unique_id=1746488450]
+shape = SubResource("RectangleShape2D_lantai_bawah")
+
+[node name="DindingBatasKiri" type="StaticBody2D" parent="." unique_id=872028625]
+position = Vector2(-1520, 0)
+
+[node name="ColorRect" type="ColorRect" parent="DindingBatasKiri" unique_id=265751713]
+offset_left = -20.0
+offset_top = -240.0
+offset_right = 20.0
+offset_bottom = 240.0
+mouse_filter = 2
+color = Color(0.11, 0.17, 0.11, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DindingBatasKiri" unique_id=1861463960]
+shape = SubResource("RectangleShape2D_batas_kiri")
+
+[node name="DindingJurangKiri" type="StaticBody2D" parent="." unique_id=737521869]
+position = Vector2(-920, 410)
+
+[node name="ColorRect" type="ColorRect" parent="DindingJurangKiri" unique_id=28532957]
+offset_left = -20.0
+offset_top = -170.0
+offset_right = 20.0
+offset_bottom = 170.0
+mouse_filter = 2
+color = Color(0.1, 0.15, 0.1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DindingJurangKiri" unique_id=342560506]
+shape = SubResource("RectangleShape2D_tebing_jurang")
+
+[node name="DindingJurangKanan" type="StaticBody2D" parent="." unique_id=1828379847]
+position = Vector2(720, 410)
+
+[node name="ColorRect" type="ColorRect" parent="DindingJurangKanan" unique_id=193498598]
+offset_left = -20.0
+offset_top = -170.0
+offset_right = 20.0
+offset_bottom = 170.0
+mouse_filter = 2
+color = Color(0.1, 0.15, 0.1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DindingJurangKanan" unique_id=1193346173]
+shape = SubResource("RectangleShape2D_tebing_jurang")
+
+[node name="DindingTinggiKanan" type="StaticBody2D" parent="." unique_id=1009450123]
+position = Vector2(1520, -200)
+
+[node name="ColorRect" type="ColorRect" parent="DindingTinggiKanan" unique_id=23515404]
+offset_left = -20.0
+offset_top = -440.0
+offset_right = 20.0
+offset_bottom = 440.0
+mouse_filter = 2
+color = Color(0.12, 0.19, 0.12, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DindingTinggiKanan" unique_id=1167234480]
+shape = SubResource("RectangleShape2D_dinding_tinggi")
+
+[node name="BreakableFloors" type="Node2D" parent="." unique_id=88839151]
+
+[node name="Bridge1" parent="BreakableFloors" unique_id=1742360116 instance=ExtResource("5_breakable")]
+position = Vector2(-780, 190)
+
+[node name="Bridge2" parent="BreakableFloors" unique_id=1930030326 instance=ExtResource("5_breakable")]
+position = Vector2(-520, 190)
+
+[node name="Bridge3" parent="BreakableFloors" unique_id=486286372 instance=ExtResource("5_breakable")]
+position = Vector2(-260, 190)
+
+[node name="Bridge4" parent="BreakableFloors" unique_id=902617544 instance=ExtResource("5_breakable")]
+position = Vector2(0, 190)
+
+[node name="Bridge5" parent="BreakableFloors" unique_id=1963987160 instance=ExtResource("5_breakable")]
+position = Vector2(260, 190)
+
+[node name="Bridge6" parent="BreakableFloors" unique_id=2064644297 instance=ExtResource("5_breakable")]
+position = Vector2(520, 190)
+
+[node name="PlatformsAtas" type="Node2D" parent="." unique_id=360730557]
+
+[node name="Teras1" type="StaticBody2D" parent="PlatformsAtas" unique_id=750173565]
+position = Vector2(1300, 175)
+
+[node name="ColorRect" type="ColorRect" parent="PlatformsAtas/Teras1" unique_id=749710703]
+offset_left = -90.0
+offset_top = -12.0
+offset_right = 90.0
+offset_bottom = 12.0
+mouse_filter = 2
+color = Color(0.36, 0.31, 0.18, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformsAtas/Teras1" unique_id=775889149]
+shape = SubResource("RectangleShape2D_platform_atas")
+
+[node name="Teras2" type="StaticBody2D" parent="PlatformsAtas" unique_id=939795357]
+position = Vector2(1080, 115)
+
+[node name="ColorRect" type="ColorRect" parent="PlatformsAtas/Teras2" unique_id=805751093]
+offset_left = -90.0
+offset_top = -12.0
+offset_right = 90.0
+offset_bottom = 12.0
+mouse_filter = 2
+color = Color(0.36, 0.31, 0.18, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformsAtas/Teras2" unique_id=1702059162]
+shape = SubResource("RectangleShape2D_platform_atas")
+
+[node name="Teras3" type="StaticBody2D" parent="PlatformsAtas" unique_id=1605946232]
+position = Vector2(860, 55)
+
+[node name="ColorRect" type="ColorRect" parent="PlatformsAtas/Teras3" unique_id=862083013]
+offset_left = -90.0
+offset_top = -12.0
+offset_right = 90.0
+offset_bottom = 12.0
+mouse_filter = 2
+color = Color(0.36, 0.31, 0.18, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformsAtas/Teras3" unique_id=227294731]
+shape = SubResource("RectangleShape2D_platform_atas")
+
+[node name="Teras4" type="StaticBody2D" parent="PlatformsAtas" unique_id=514220719]
+position = Vector2(640, -5)
+
+[node name="ColorRect" type="ColorRect" parent="PlatformsAtas/Teras4" unique_id=1016533001]
+offset_left = -90.0
+offset_top = -12.0
+offset_right = 90.0
+offset_bottom = 12.0
+mouse_filter = 2
+color = Color(0.36, 0.31, 0.18, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformsAtas/Teras4" unique_id=1545515613]
+shape = SubResource("RectangleShape2D_platform_atas")
+
+[node name="Teras5" type="StaticBody2D" parent="PlatformsAtas" unique_id=2062855192]
+position = Vector2(420, -65)
+
+[node name="ColorRect" type="ColorRect" parent="PlatformsAtas/Teras5" unique_id=944009743]
+offset_left = -90.0
+offset_top = -12.0
+offset_right = 90.0
+offset_bottom = 12.0
+mouse_filter = 2
+color = Color(0.36, 0.31, 0.18, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformsAtas/Teras5" unique_id=1990489709]
+shape = SubResource("RectangleShape2D_platform_atas")
+
+[node name="Teras6" type="StaticBody2D" parent="PlatformsAtas" unique_id=1214672031]
+position = Vector2(200, -125)
+
+[node name="ColorRect" type="ColorRect" parent="PlatformsAtas/Teras6" unique_id=194888738]
+offset_left = -90.0
+offset_top = -12.0
+offset_right = 90.0
+offset_bottom = 12.0
+mouse_filter = 2
+color = Color(0.36, 0.31, 0.18, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformsAtas/Teras6" unique_id=843078502]
+shape = SubResource("RectangleShape2D_platform_atas")
+
+[node name="Teras7" type="StaticBody2D" parent="PlatformsAtas" unique_id=862912044]
+position = Vector2(-20, -185)
+
+[node name="ColorRect" type="ColorRect" parent="PlatformsAtas/Teras7" unique_id=1658728508]
+offset_left = -90.0
+offset_top = -12.0
+offset_right = 90.0
+offset_bottom = 12.0
+mouse_filter = 2
+color = Color(0.36, 0.31, 0.18, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformsAtas/Teras7" unique_id=1925154928]
+shape = SubResource("RectangleShape2D_platform_atas")
+
+[node name="PuncakMenara" type="StaticBody2D" parent="." unique_id=1766318926]
+position = Vector2(1360, -652)
+
+[node name="ColorRect" type="ColorRect" parent="PuncakMenara" unique_id=1489001889]
+offset_left = -150.0
+offset_top = -12.0
+offset_right = 150.0
+offset_bottom = 12.0
+mouse_filter = 2
+color = Color(0.42, 0.34, 0.18, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PuncakMenara" unique_id=298316521]
+shape = SubResource("RectangleShape2D_puncak")
+
+[node name="PlatformsBawah" type="Node2D" parent="." unique_id=1423312256]
+
+[node name="BawahKiri1" type="StaticBody2D" parent="PlatformsBawah" unique_id=1360040934]
+position = Vector2(-760, 512)
+
+[node name="ColorRect" type="ColorRect" parent="PlatformsBawah/BawahKiri1" unique_id=1162689201]
+offset_left = -80.0
+offset_top = -12.0
+offset_right = 80.0
+offset_bottom = 12.0
+mouse_filter = 2
+color = Color(0.3, 0.27, 0.16, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformsBawah/BawahKiri1" unique_id=933700502]
+shape = SubResource("RectangleShape2D_platform_bawah")
+
+[node name="BawahKiri2" type="StaticBody2D" parent="PlatformsBawah" unique_id=437222029]
+position = Vector2(-800, 452)
+
+[node name="ColorRect" type="ColorRect" parent="PlatformsBawah/BawahKiri2" unique_id=1383684805]
+offset_left = -80.0
+offset_top = -12.0
+offset_right = 80.0
+offset_bottom = 12.0
+mouse_filter = 2
+color = Color(0.3, 0.27, 0.16, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformsBawah/BawahKiri2" unique_id=621590926]
+shape = SubResource("RectangleShape2D_platform_bawah")
+
+[node name="BawahKiri3" type="StaticBody2D" parent="PlatformsBawah" unique_id=1751169987]
+position = Vector2(-760, 392)
+
+[node name="ColorRect" type="ColorRect" parent="PlatformsBawah/BawahKiri3" unique_id=1458886278]
+offset_left = -80.0
+offset_top = -12.0
+offset_right = 80.0
+offset_bottom = 12.0
+mouse_filter = 2
+color = Color(0.3, 0.27, 0.16, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformsBawah/BawahKiri3" unique_id=55638868]
+shape = SubResource("RectangleShape2D_platform_bawah")
+
+[node name="BawahKiri4" type="StaticBody2D" parent="PlatformsBawah" unique_id=732105323]
+position = Vector2(-800, 332)
+
+[node name="ColorRect" type="ColorRect" parent="PlatformsBawah/BawahKiri4" unique_id=1264550365]
+offset_left = -80.0
+offset_top = -12.0
+offset_right = 80.0
+offset_bottom = 12.0
+mouse_filter = 2
+color = Color(0.3, 0.27, 0.16, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformsBawah/BawahKiri4" unique_id=1014604449]
+shape = SubResource("RectangleShape2D_platform_bawah")
+
+[node name="LedgeKiri" type="StaticBody2D" parent="PlatformsBawah" unique_id=1558338957]
+position = Vector2(-840, 292)
+
+[node name="ColorRect" type="ColorRect" parent="PlatformsBawah/LedgeKiri" unique_id=1712619833]
+offset_left = -80.0
+offset_top = -12.0
+offset_right = 80.0
+offset_bottom = 12.0
+mouse_filter = 2
+color = Color(0.36, 0.31, 0.18, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformsBawah/LedgeKiri" unique_id=450554498]
+shape = SubResource("RectangleShape2D_platform_bawah")
+
+[node name="BawahKanan1" type="StaticBody2D" parent="PlatformsBawah" unique_id=1738516788]
+position = Vector2(530, 512)
+
+[node name="ColorRect" type="ColorRect" parent="PlatformsBawah/BawahKanan1" unique_id=1735726888]
+offset_left = -80.0
+offset_top = -12.0
+offset_right = 80.0
+offset_bottom = 12.0
+mouse_filter = 2
+color = Color(0.3, 0.27, 0.16, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformsBawah/BawahKanan1" unique_id=896645836]
+shape = SubResource("RectangleShape2D_platform_bawah")
+
+[node name="BawahKanan2" type="StaticBody2D" parent="PlatformsBawah" unique_id=1495982479]
+position = Vector2(620, 452)
+
+[node name="ColorRect" type="ColorRect" parent="PlatformsBawah/BawahKanan2" unique_id=929029622]
+offset_left = -80.0
+offset_top = -12.0
+offset_right = 80.0
+offset_bottom = 12.0
+mouse_filter = 2
+color = Color(0.3, 0.27, 0.16, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformsBawah/BawahKanan2" unique_id=1921110240]
+shape = SubResource("RectangleShape2D_platform_bawah")
+
+[node name="BawahKanan3" type="StaticBody2D" parent="PlatformsBawah" unique_id=1496867006]
+position = Vector2(520, 392)
+
+[node name="ColorRect" type="ColorRect" parent="PlatformsBawah/BawahKanan3" unique_id=1699069331]
+offset_left = -80.0
+offset_top = -12.0
+offset_right = 80.0
+offset_bottom = 12.0
+mouse_filter = 2
+color = Color(0.3, 0.27, 0.16, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformsBawah/BawahKanan3" unique_id=1948830568]
+shape = SubResource("RectangleShape2D_platform_bawah")
+
+[node name="BawahKanan4" type="StaticBody2D" parent="PlatformsBawah" unique_id=191595264]
+position = Vector2(620, 332)
+
+[node name="ColorRect" type="ColorRect" parent="PlatformsBawah/BawahKanan4" unique_id=2045277908]
+offset_left = -80.0
+offset_top = -12.0
+offset_right = 80.0
+offset_bottom = 12.0
+mouse_filter = 2
+color = Color(0.3, 0.27, 0.16, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformsBawah/BawahKanan4" unique_id=195536924]
+shape = SubResource("RectangleShape2D_platform_bawah")
+
+[node name="LedgeKanan" type="StaticBody2D" parent="PlatformsBawah" unique_id=163179598]
+position = Vector2(640, 292)
+
+[node name="ColorRect" type="ColorRect" parent="PlatformsBawah/LedgeKanan" unique_id=1283003145]
+offset_left = -80.0
+offset_top = -12.0
+offset_right = 80.0
+offset_bottom = 12.0
+mouse_filter = 2
+color = Color(0.36, 0.31, 0.18, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformsBawah/LedgeKanan" unique_id=48844227]
+shape = SubResource("RectangleShape2D_platform_bawah")
+
+[node name="Enemies" type="Node2D" parent="." unique_id=926909447]
+
+[node name="EnemyStart" parent="Enemies" unique_id=1928635143 instance=ExtResource("9_melee")]
+position = Vector2(-1050, 190)
+patrol_range = 90.0
+
+[node name="EnemyBridge" parent="Enemies" unique_id=1578747838 instance=ExtResource("9_melee")]
+position = Vector2(-260, 140)
+patrol_range = 45.0
+
+[node name="EnemyHutan1" parent="Enemies" unique_id=1364930713 instance=ExtResource("9_melee")]
+position = Vector2(1100, 190)
+patrol_range = 40.0
+
+[node name="EnemyHutan2" parent="Enemies" unique_id=985735381 instance=ExtResource("9_melee")]
+position = Vector2(1170, 190)
+patrol_range = 30.0
+
+[node name="EnemyBawah1" parent="Enemies" unique_id=1525780463 instance=ExtResource("9_melee")]
+position = Vector2(-400, 510)
+patrol_range = 90.0
+
+[node name="EnemyBawah2" parent="Enemies" unique_id=1450064326 instance=ExtResource("9_melee")]
+position = Vector2(250, 510)
+patrol_range = 80.0
+
+[node name="EnemyTeras3" parent="Enemies" unique_id=692225152 instance=ExtResource("9_melee")]
+position = Vector2(860, 5)
+patrol_range = 50.0
+
+[node name="EnemyTeras6" parent="Enemies" unique_id=940679012 instance=ExtResource("9_melee")]
+position = Vector2(200, -180)
+patrol_range = 45.0
+
+[node name="EnemyPuncak" parent="Enemies" unique_id=1368051633 instance=ExtResource("9_melee")]
+position = Vector2(1380, -705)
+patrol_range = 60.0
+
+[node name="Hazards" type="Node2D" parent="." unique_id=1348673625]
+
+[node name="HazardAreaJurang" type="Area2D" parent="Hazards" unique_id=613512179]
+position = Vector2(0, 780)
+collision_layer = 0
+script = ExtResource("4_hazard")
+respawn_on_hit = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hazards/HazardAreaJurang" unique_id=1091750827]
+shape = SubResource("RectangleShape2D_jurang_bawah")
+
+[node name="Visual" type="ColorRect" parent="Hazards/HazardAreaJurang" unique_id=270100755]
+offset_left = -1800.0
+offset_top = -100.0
+offset_right = 1800.0
+offset_bottom = 100.0
+mouse_filter = 2
+color = Color(0.45, 0.05, 0.08, 0.4)
+
+[node name="HazardAreaDuriBawah1" type="Area2D" parent="Hazards" unique_id=562472133]
+position = Vector2(-620, 550)
+collision_layer = 0
+script = ExtResource("4_hazard")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hazards/HazardAreaDuriBawah1" unique_id=589493081]
+shape = SubResource("RectangleShape2D_duri")
+
+[node name="Visual" type="Polygon2D" parent="Hazards/HazardAreaDuriBawah1" unique_id=1506184572]
+color = Color(0.85, 0.18, 0.18, 1)
+polygon = PackedVector2Array(-60, 10, -60, 0, -50, -10, -40, 0, -30, -10, -20, 0, -10, -10, 0, 0, 10, -10, 20, 0, 30, -10, 40, 0, 50, -10, 60, 0, 60, 10)
+
+[node name="HazardAreaDuriBawah2" type="Area2D" parent="Hazards" unique_id=311024631]
+modulate = Color(1, 1.25, 0.65, 1)
+position = Vector2(-140, 550)
+collision_layer = 0
+script = ExtResource("4_hazard")
+damage = 32
+hit_cooldown = 1.5
+knockback_force = 380.0
+stun_duration = 0.7
+shake_intensity = 4.2
+shake_duration = 0.24
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hazards/HazardAreaDuriBawah2" unique_id=639668231]
+shape = SubResource("RectangleShape2D_duri")
+
+[node name="Visual" type="Polygon2D" parent="Hazards/HazardAreaDuriBawah2" unique_id=1225545605]
+color = Color(0.85, 0.18, 0.18, 1)
+polygon = PackedVector2Array(-60, 10, -60, 0, -50, -10, -40, 0, -30, -10, -20, 0, -10, -10, 0, 0, 10, -10, 20, 0, 30, -10, 40, 0, 50, -10, 60, 0, 60, 10)
+
+[node name="HazardAreaDuriBawah3" type="Area2D" parent="Hazards" unique_id=1377052899]
+position = Vector2(340, 550)
+collision_layer = 0
+script = ExtResource("4_hazard")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hazards/HazardAreaDuriBawah3" unique_id=22929065]
+shape = SubResource("RectangleShape2D_duri")
+
+[node name="Visual" type="Polygon2D" parent="Hazards/HazardAreaDuriBawah3" unique_id=2071338778]
+color = Color(0.85, 0.18, 0.18, 1)
+polygon = PackedVector2Array(-60, 10, -60, 0, -50, -10, -40, 0, -30, -10, -20, 0, -10, -10, 0, 0, 10, -10, 20, 0, 30, -10, 40, 0, 50, -10, 60, 0, 60, 10)
+
+[node name="BossEncounter" type="Node2D" parent="."]
+
+[node name="BossArenaGate" parent="BossEncounter" instance=ExtResource("12_boss_gate")]
+position = Vector2(1000, 105)
+
+[node name="BossArenaGateExit" parent="BossEncounter" instance=ExtResource("12_boss_gate")]
+position = Vector2(1420, 105)
+
+[node name="ArenaLeft" type="Marker2D" parent="BossEncounter"]
+position = Vector2(1040, 190)
+
+[node name="ArenaRight" type="Marker2D" parent="BossEncounter"]
+position = Vector2(1380, 190)
+
+[node name="BossSpawn" type="Marker2D" parent="BossEncounter"]
+position = Vector2(1280, 190)
+
+[node name="Portals" type="Node2D" parent="." unique_id=1864502692]
+
+[node name="PortalBiome2" parent="Portals" unique_id=1272606289 instance=ExtResource("6_portal")]
+position = Vector2(1468, 194)
+target_scene = "res://scenes/biome2.tscn"
+target_spawn_tag = "from_world"
+start_disabled = false
+
+[node name="PetiPusaka" type="Node2D" parent="." unique_id=1236616363]
+
+[node name="ChestDesa" parent="PetiPusaka" unique_id=88053575 instance=ExtResource("7_chest")]
+position = Vector2(-990, 214)
+
+[node name="ChestHutan" parent="PetiPusaka" unique_id=604423719 instance=ExtResource("7_chest")]
+position = Vector2(780, 214)
+
+[node name="KayuRapuh" type="Node2D" parent="."]
+
+[node name="KayuDesa" parent="KayuRapuh" instance=ExtResource("13_wood")]
+position = Vector2(-1080, 210)
+
+[node name="KayuHutan" parent="KayuRapuh" instance=ExtResource("13_wood")]
+position = Vector2(1060, 210)
+
+[node name="KayuJurang" parent="KayuRapuh" instance=ExtResource("13_wood")]
+position = Vector2(-400, 530)
+
+[node name="Prasasti" type="Node2D" parent="." unique_id=1864025693]
+
+[node name="PrasastiDesa" parent="Prasasti" unique_id=1459368020 instance=ExtResource("8_teleporter")]
+position = Vector2(-1230, 236)
+teleporter_name = "Prasasti Desa"
+
+[node name="PrasastiHutan" parent="Prasasti" unique_id=1376597984 instance=ExtResource("8_teleporter")]
+position = Vector2(920, 236)
+teleporter_name = "Prasasti Hutan"
+
+[node name="PrasastiPuncak" parent="Prasasti" unique_id=1452629796 instance=ExtResource("8_teleporter")]
+position = Vector2(1260, -668)
+teleporter_name = "Prasasti Puncak"
+
+[node name="Sagara" parent="." unique_id=1244772963 instance=ExtResource("1_player")]
+position = Vector2(-1350, 180)
+
+[node name="HUD" parent="." unique_id=857146046 instance=ExtResource("3_hud")]

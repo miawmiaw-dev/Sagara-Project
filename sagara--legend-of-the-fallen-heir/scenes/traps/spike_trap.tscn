@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/traps/environmental_trap.gd" id="1_trap"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_spike"]
+size = Vector2(120, 24)
+
+[node name="SpikeTrap" type="Area2D"]
+z_index = 1
+collision_layer = 0
+collision_mask = 1
+monitorable = false
+script = ExtResource("1_trap")
+
+[node name="Visual" type="Node2D" parent="."]
+
+[node name="Base" type="Polygon2D" parent="Visual"]
+color = Color(0.3, 0.11, 0.09, 1)
+polygon = PackedVector2Array(-60, 0, 60, 0, 60, 8, -60, 8)
+
+[node name="Spikes" type="Polygon2D" parent="Visual"]
+color = Color(0.85, 0.2, 0.18, 1)
+polygon = PackedVector2Array(-60, 0, -55, -24, -50, 0, -45, -24, -40, 0, -35, -24, -30, 0, -25, -24, -20, 0, -15, -24, -10, 0, -5, -24, 0, 0, 5, -24, 10, 0, 15, -24, 20, 0, 25, -24, 30, 0, 35, -24, 40, 0, 45, -24, 50, 0, 55, -24, 60, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -12)
+shape = SubResource("RectangleShape2D_spike")

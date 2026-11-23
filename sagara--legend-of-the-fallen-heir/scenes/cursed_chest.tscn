@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dqs8d28ueerc7"]
+
+[ext_resource type="Script" path="res://scripts/cursed_chest.gd" id="1_cc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_chest"]
+size = Vector2(32, 24)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_chest"]
+size = Vector2(32, 24)
+
+[node name="CursedChest" type="Area2D"]
+script = ExtResource("1_cc")
+collision_layer = 0
+collision_mask = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("PlaceholderTexture2D_chest")
+modulate = Color(0.6, 0.1, 0.8, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_chest")

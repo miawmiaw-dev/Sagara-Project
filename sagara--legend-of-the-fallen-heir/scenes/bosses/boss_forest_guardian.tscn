@@ -1,0 +1,121 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/bosses/boss_forest_guardian.gd" id="1_boss"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_boss_body"]
+size = Vector2(48, 96)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_boss_slash"]
+size = Vector2(124, 96)
+
+[node name="BossForestGuardian" type="CharacterBody2D" groups=["boss", "enemy"]]
+visible = false
+z_index = 4
+collision_layer = 0
+collision_mask = 1
+script = ExtResource("1_boss")
+
+[node name="Visual" type="ColorRect" parent="."]
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+offset_left = -30.0
+offset_top = -48.0
+offset_right = 30.0
+offset_bottom = 48.0
+pivot_offset = Vector2(30, 48)
+mouse_filter = 2
+color = Color(0.18, 0.27, 0.16, 1)
+
+[node name="BodyShade" type="ColorRect" parent="Visual"]
+offset_left = -24.0
+offset_top = -44.0
+offset_right = 24.0
+offset_bottom = 44.0
+mouse_filter = 2
+color = Color(0.1, 0.16, 0.1, 1)
+
+[node name="Mask" type="ColorRect" parent="Visual"]
+offset_left = -18.0
+offset_top = -38.0
+offset_right = 18.0
+offset_bottom = -12.0
+mouse_filter = 2
+color = Color(0.48, 0.42, 0.24, 1)
+
+[node name="EyeLeft" type="ColorRect" parent="Visual"]
+offset_left = -11.0
+offset_top = -30.0
+offset_right = -5.0
+offset_bottom = -24.0
+mouse_filter = 2
+color = Color(0.45, 1, 0.7, 1)
+
+[node name="EyeRight" type="ColorRect" parent="Visual"]
+offset_left = 5.0
+offset_top = -30.0
+offset_right = 11.0
+offset_bottom = -24.0
+mouse_filter = 2
+color = Color(0.45, 1, 0.7, 1)
+
+[node name="Core" type="Polygon2D" parent="Visual"]
+position = Vector2(0, 14)
+color = Color(0.32, 0.8, 0.5, 0.75)
+polygon = PackedVector2Array(0, -10, 8, 0, 0, 10, -8, 0)
+
+[node name="Horns" type="Polygon2D" parent="Visual"]
+color = Color(0.3, 0.24, 0.14, 1)
+polygon = PackedVector2Array(-28, -44, -16, -78, -4, -50, 4, -50, 16, -78, 28, -44)
+
+[node name="Telegraph" type="Label" parent="."]
+visible = false
+offset_left = -40.0
+offset_top = -138.0
+offset_right = 40.0
+offset_bottom = -88.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 0.35, 0.12, 1)
+theme_override_colors/font_outline_color = Color(0.08, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 52
+text = "!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AttackName" type="Label" parent="."]
+visible = false
+offset_left = -180.0
+offset_top = -182.0
+offset_right = 180.0
+offset_bottom = -148.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 0.86, 0.55, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.9)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 18
+text = "TEBASAN BERAT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_boss_body")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("RectangleShape2D_boss_body")
+
+[node name="SlashArea" type="Area2D" parent="."]
+position = Vector2(-62, 0)
+collision_layer = 0
+collision_mask = 1
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SlashArea"]
+shape = SubResource("RectangleShape2D_boss_slash")

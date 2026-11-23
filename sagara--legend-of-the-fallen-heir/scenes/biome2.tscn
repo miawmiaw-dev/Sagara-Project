@@ -1,0 +1,749 @@
+[gd_scene load_steps=17 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/player/player.tscn" id="1_player"]
+[ext_resource type="PackedScene" path="res://scenes/hud.tscn" id="2_hud"]
+[ext_resource type="PackedScene" path="res://scenes/bosses/boss_forest_guardian.tscn" id="3_boss"]
+[ext_resource type="PackedScene" path="res://scenes/bosses/boss_arena_trigger.tscn" id="4_boss_trigger"]
+[ext_resource type="PackedScene" path="res://scenes/bosses/boss_arena_gate.tscn" id="5_boss_gate"]
+[ext_resource type="PackedScene" path="res://scenes/level_door.tscn" id="6_door"]
+[ext_resource type="Script" path="res://scripts/altar_interact.gd" id="7_altar"]
+[ext_resource type="PackedScene" path="res://scenes/teleporter.tscn" id="8_teleporter"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lantai_arena"]
+size = Vector2(3600, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dinding_gua"]
+size = Vector2(40, 1340)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_langit_gua"]
+size = Vector2(3600, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_plafon_arena"]
+size = Vector2(880, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dinding_atas_arena"]
+size = Vector2(40, 1080)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_undakan"]
+size = Vector2(220, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_altar"]
+size = Vector2(420, 116)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_altar_pijakan"]
+size = Vector2(420, 70)
+
+[node name="Biome2" type="Node2D"]
+
+[node name="BiomeBackground" type="Node2D" parent="."]
+z_index = -10
+
+[node name="Kegelapan" type="ColorRect" parent="BiomeBackground"]
+offset_left = -2000.0
+offset_top = -1400.0
+offset_right = 2600.0
+offset_bottom = 1000.0
+mouse_filter = 2
+color = Color(0.015, 0.02, 0.035, 1)
+
+[node name="DindingGua" type="ColorRect" parent="BiomeBackground"]
+offset_left = -1400.0
+offset_top = -900.0
+offset_right = 2400.0
+offset_bottom = 650.0
+mouse_filter = 2
+color = Color(0.05, 0.06, 0.09, 1)
+
+[node name="LapisanBatuAtas" type="ColorRect" parent="BiomeBackground"]
+offset_left = -1400.0
+offset_top = -900.0
+offset_right = 2400.0
+offset_bottom = -420.0
+mouse_filter = 2
+color = Color(0.07, 0.085, 0.12, 1)
+
+[node name="LapisanBatuBawah" type="ColorRect" parent="BiomeBackground"]
+offset_left = -1400.0
+offset_top = 250.0
+offset_right = 2400.0
+offset_bottom = 650.0
+mouse_filter = 2
+color = Color(0.035, 0.045, 0.07, 1)
+
+[node name="CahayaRembulan" type="ColorRect" parent="BiomeBackground"]
+offset_left = -520.0
+offset_top = -900.0
+offset_right = 520.0
+offset_bottom = 650.0
+mouse_filter = 2
+color = Color(0.15, 0.23, 0.32, 0.1)
+
+[node name="CahayaInti" type="ColorRect" parent="BiomeBackground"]
+offset_left = -220.0
+offset_top = -900.0
+offset_right = 220.0
+offset_bottom = 650.0
+mouse_filter = 2
+color = Color(0.25, 0.4, 0.5, 0.06)
+
+[node name="CahayaArena" type="ColorRect" parent="BiomeBackground"]
+offset_left = 1080.0
+offset_top = -760.0
+offset_right = 2120.0
+offset_bottom = 650.0
+mouse_filter = 2
+color = Color(0.18, 0.28, 0.42, 0.055)
+
+[node name="Stalaktit" type="Polygon2D" parent="BiomeBackground"]
+color = Color(0.025, 0.03, 0.05, 1)
+polygon = PackedVector2Array(-1320, -800, 1320, -800, 1320, -690, 1180, -760, 1040, -640, 900, -750, 760, -610, 620, -780, 460, -650, 320, -770, 180, -630, 40, -760, -100, -620, -260, -780, -420, -640, -580, -770, -740, -620, -900, -750, -1060, -640, -1200, -780, -1320, -700)
+
+[node name="StalaktitKanan" type="Polygon2D" parent="BiomeBackground"]
+color = Color(0.025, 0.03, 0.05, 1)
+polygon = PackedVector2Array(1320, -800, 2320, -800, 2320, -690, 2180, -760, 2040, -640, 1900, -750, 1760, -610, 1620, -780, 1480, -650, 1360, -770, 1320, -700)
+
+[node name="GerbangCandi" type="Node2D" parent="BiomeBackground"]
+
+[node name="PilarKiriLuar" type="ColorRect" parent="BiomeBackground/GerbangCandi"]
+offset_left = -430.0
+offset_top = -560.0
+offset_right = -320.0
+offset_bottom = 520.0
+mouse_filter = 2
+color = Color(0.075, 0.085, 0.12, 1)
+
+[node name="PilarKananLuar" type="ColorRect" parent="BiomeBackground/GerbangCandi"]
+offset_left = 320.0
+offset_top = -560.0
+offset_right = 430.0
+offset_bottom = 520.0
+mouse_filter = 2
+color = Color(0.075, 0.085, 0.12, 1)
+
+[node name="LintelLuar" type="ColorRect" parent="BiomeBackground/GerbangCandi"]
+offset_left = -470.0
+offset_top = -660.0
+offset_right = 470.0
+offset_bottom = -560.0
+mouse_filter = 2
+color = Color(0.09, 0.1, 0.14, 1)
+
+[node name="PilarKiriDalam" type="ColorRect" parent="BiomeBackground/GerbangCandi"]
+offset_left = -240.0
+offset_top = -480.0
+offset_right = -150.0
+offset_bottom = 520.0
+mouse_filter = 2
+color = Color(0.11, 0.13, 0.18, 1)
+
+[node name="PilarKananDalam" type="ColorRect" parent="BiomeBackground/GerbangCandi"]
+offset_left = 150.0
+offset_top = -480.0
+offset_right = 240.0
+offset_bottom = 520.0
+mouse_filter = 2
+color = Color(0.11, 0.13, 0.18, 1)
+
+[node name="LintelDalam" type="ColorRect" parent="BiomeBackground/GerbangCandi"]
+offset_left = -270.0
+offset_top = -570.0
+offset_right = 270.0
+offset_bottom = -480.0
+mouse_filter = 2
+color = Color(0.13, 0.15, 0.21, 1)
+
+[node name="Relief" type="ColorRect" parent="BiomeBackground/GerbangCandi"]
+offset_left = -130.0
+offset_top = -440.0
+offset_right = 130.0
+offset_bottom = -160.0
+mouse_filter = 2
+color = Color(0.1, 0.12, 0.17, 1)
+
+[node name="ReliefBercahaya" type="ColorRect" parent="BiomeBackground/GerbangCandi"]
+offset_left = -80.0
+offset_top = -400.0
+offset_right = 80.0
+offset_bottom = -200.0
+mouse_filter = 2
+color = Color(0.18, 0.42, 0.46, 0.25)
+
+[node name="PintuKegelapan" type="ColorRect" parent="BiomeBackground/GerbangCandi"]
+offset_left = -140.0
+offset_top = -160.0
+offset_right = 140.0
+offset_bottom = 520.0
+mouse_filter = 2
+color = Color(0.01, 0.015, 0.025, 1)
+
+[node name="PilarSisiKiri" type="ColorRect" parent="BiomeBackground"]
+offset_left = -1040.0
+offset_top = -420.0
+offset_right = -960.0
+offset_bottom = 520.0
+mouse_filter = 2
+color = Color(0.06, 0.07, 0.1, 1)
+
+[node name="PilarSisiKanan" type="ColorRect" parent="BiomeBackground"]
+offset_left = 960.0
+offset_top = -420.0
+offset_right = 1040.0
+offset_bottom = 520.0
+mouse_filter = 2
+color = Color(0.06, 0.07, 0.1, 1)
+
+[node name="ApiKiri" type="Node2D" parent="BiomeBackground"]
+position = Vector2(-980, 80)
+
+[node name="Glow" type="ColorRect" parent="BiomeBackground/ApiKiri"]
+offset_left = -55.0
+offset_top = -70.0
+offset_right = 55.0
+offset_bottom = 70.0
+mouse_filter = 2
+color = Color(0.12, 0.55, 0.7, 0.08)
+
+[node name="Core" type="ColorRect" parent="BiomeBackground/ApiKiri"]
+offset_left = -9.0
+offset_top = -16.0
+offset_right = 9.0
+offset_bottom = 16.0
+mouse_filter = 2
+color = Color(0.35, 0.9, 1, 0.7)
+
+[node name="ApiKanan" type="Node2D" parent="BiomeBackground"]
+position = Vector2(980, 80)
+
+[node name="Glow" type="ColorRect" parent="BiomeBackground/ApiKanan"]
+offset_left = -55.0
+offset_top = -70.0
+offset_right = 55.0
+offset_bottom = 70.0
+mouse_filter = 2
+color = Color(0.12, 0.55, 0.7, 0.08)
+
+[node name="Core" type="ColorRect" parent="BiomeBackground/ApiKanan"]
+offset_left = -9.0
+offset_top = -16.0
+offset_right = 9.0
+offset_bottom = 16.0
+mouse_filter = 2
+color = Color(0.35, 0.9, 1, 0.7)
+
+[node name="ApiAltar" type="Node2D" parent="BiomeBackground"]
+position = Vector2(0, 130)
+
+[node name="Glow" type="ColorRect" parent="BiomeBackground/ApiAltar"]
+offset_left = -70.0
+offset_top = -90.0
+offset_right = 70.0
+offset_bottom = 90.0
+mouse_filter = 2
+color = Color(0.12, 0.55, 0.7, 0.06)
+
+[node name="Core" type="ColorRect" parent="BiomeBackground/ApiAltar"]
+offset_left = -10.0
+offset_top = -18.0
+offset_right = 10.0
+offset_bottom = 18.0
+mouse_filter = 2
+color = Color(0.35, 0.9, 1, 0.6)
+
+[node name="ApiArena" type="Node2D" parent="BiomeBackground"]
+position = Vector2(1560, 80)
+
+[node name="Glow" type="ColorRect" parent="BiomeBackground/ApiArena"]
+offset_left = -55.0
+offset_top = -70.0
+offset_right = 55.0
+offset_bottom = 70.0
+mouse_filter = 2
+color = Color(0.12, 0.55, 0.7, 0.08)
+
+[node name="Core" type="ColorRect" parent="BiomeBackground/ApiArena"]
+offset_left = -9.0
+offset_top = -16.0
+offset_right = 9.0
+offset_bottom = 16.0
+mouse_filter = 2
+color = Color(0.35, 0.9, 1, 0.7)
+
+[node name="KabutBawah" type="ColorRect" parent="BiomeBackground"]
+offset_left = -1400.0
+offset_top = 260.0
+offset_right = 2400.0
+offset_bottom = 650.0
+mouse_filter = 2
+color = Color(0.06, 0.09, 0.14, 0.5)
+
+[node name="LantaiArena" type="StaticBody2D" parent="."]
+position = Vector2(500, 560)
+
+[node name="ColorRect" type="ColorRect" parent="LantaiArena"]
+offset_left = -1800.0
+offset_top = -20.0
+offset_right = 1800.0
+offset_bottom = 20.0
+mouse_filter = 2
+color = Color(0.09, 0.1, 0.14, 1)
+
+[node name="BatuAtas" type="ColorRect" parent="LantaiArena"]
+offset_left = -1800.0
+offset_top = -20.0
+offset_right = 1800.0
+offset_bottom = -10.0
+mouse_filter = 2
+color = Color(0.18, 0.21, 0.3, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LantaiArena"]
+shape = SubResource("RectangleShape2D_lantai_arena")
+
+[node name="DindingKiri" type="StaticBody2D" parent="."]
+position = Vector2(-1320, -130)
+
+[node name="ColorRect" type="ColorRect" parent="DindingKiri"]
+offset_left = -20.0
+offset_top = -670.0
+offset_right = 20.0
+offset_bottom = 670.0
+mouse_filter = 2
+color = Color(0.08, 0.09, 0.13, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DindingKiri"]
+shape = SubResource("RectangleShape2D_dinding_gua")
+
+[node name="DindingKanan" type="StaticBody2D" parent="."]
+position = Vector2(2300, -130)
+
+[node name="ColorRect" type="ColorRect" parent="DindingKanan"]
+offset_left = -20.0
+offset_top = -670.0
+offset_right = 20.0
+offset_bottom = 670.0
+mouse_filter = 2
+color = Color(0.08, 0.09, 0.13, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DindingKanan"]
+shape = SubResource("RectangleShape2D_dinding_gua")
+
+[node name="LangitGua" type="StaticBody2D" parent="."]
+position = Vector2(500, -820)
+
+[node name="ColorRect" type="ColorRect" parent="LangitGua"]
+offset_left = -1800.0
+offset_top = -20.0
+offset_right = 1800.0
+offset_bottom = 20.0
+mouse_filter = 2
+color = Color(0.06, 0.07, 0.1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LangitGua"]
+shape = SubResource("RectangleShape2D_langit_gua")
+
+[node name="PlafonArena" type="StaticBody2D" parent="."]
+position = Vector2(1560, 250)
+
+[node name="Batu" type="ColorRect" parent="PlafonArena"]
+offset_left = -440.0
+offset_top = -20.0
+offset_right = 440.0
+offset_bottom = 20.0
+mouse_filter = 2
+color = Color(0.07, 0.085, 0.12, 1)
+
+[node name="BatuAtas" type="ColorRect" parent="PlafonArena"]
+offset_left = -440.0
+offset_top = -20.0
+offset_right = 440.0
+offset_bottom = -8.0
+mouse_filter = 2
+color = Color(0.17, 0.2, 0.29, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlafonArena"]
+shape = SubResource("RectangleShape2D_plafon_arena")
+
+[node name="DindingAtasArenaKiri" type="StaticBody2D" parent="."]
+position = Vector2(1120, -270)
+
+[node name="Batu" type="ColorRect" parent="DindingAtasArenaKiri"]
+offset_left = -20.0
+offset_top = -540.0
+offset_right = 20.0
+offset_bottom = 540.0
+mouse_filter = 2
+color = Color(0.06, 0.075, 0.11, 1)
+
+[node name="BatuTepi" type="ColorRect" parent="DindingAtasArenaKiri"]
+offset_left = -20.0
+offset_top = -540.0
+offset_right = -12.0
+offset_bottom = 540.0
+mouse_filter = 2
+color = Color(0.16, 0.19, 0.28, 0.85)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DindingAtasArenaKiri"]
+shape = SubResource("RectangleShape2D_dinding_atas_arena")
+
+[node name="DindingAtasArenaKanan" type="StaticBody2D" parent="."]
+position = Vector2(2000, -270)
+
+[node name="Batu" type="ColorRect" parent="DindingAtasArenaKanan"]
+offset_left = -20.0
+offset_top = -540.0
+offset_right = 20.0
+offset_bottom = 540.0
+mouse_filter = 2
+color = Color(0.06, 0.075, 0.11, 1)
+
+[node name="BatuTepi" type="ColorRect" parent="DindingAtasArenaKanan"]
+offset_left = 12.0
+offset_top = -540.0
+offset_right = 20.0
+offset_bottom = 540.0
+mouse_filter = 2
+color = Color(0.16, 0.19, 0.28, 0.85)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DindingAtasArenaKanan"]
+shape = SubResource("RectangleShape2D_dinding_atas_arena")
+
+[node name="Reruntuhan" type="Node2D" parent="."]
+
+[node name="UndakanKiri" type="StaticBody2D" parent="Reruntuhan"]
+position = Vector2(-820, 500)
+
+[node name="ColorRect" type="ColorRect" parent="Reruntuhan/UndakanKiri"]
+offset_left = -110.0
+offset_top = -12.0
+offset_right = 110.0
+offset_bottom = 12.0
+mouse_filter = 2
+color = Color(0.15, 0.17, 0.24, 1)
+
+[node name="BatuAtas" type="ColorRect" parent="Reruntuhan/UndakanKiri"]
+offset_left = -110.0
+offset_top = -12.0
+offset_right = 110.0
+offset_bottom = -6.0
+mouse_filter = 2
+color = Color(0.25, 0.28, 0.38, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Reruntuhan/UndakanKiri"]
+shape = SubResource("RectangleShape2D_undakan")
+
+[node name="TerasKiri" type="StaticBody2D" parent="Reruntuhan"]
+position = Vector2(-560, 430)
+
+[node name="ColorRect" type="ColorRect" parent="Reruntuhan/TerasKiri"]
+offset_left = -110.0
+offset_top = -12.0
+offset_right = 110.0
+offset_bottom = 12.0
+mouse_filter = 2
+color = Color(0.15, 0.17, 0.24, 1)
+
+[node name="BatuAtas" type="ColorRect" parent="Reruntuhan/TerasKiri"]
+offset_left = -110.0
+offset_top = -12.0
+offset_right = 110.0
+offset_bottom = -6.0
+mouse_filter = 2
+color = Color(0.25, 0.28, 0.38, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Reruntuhan/TerasKiri"]
+shape = SubResource("RectangleShape2D_undakan")
+
+[node name="TerasTengah" type="StaticBody2D" parent="Reruntuhan"]
+position = Vector2(-280, 360)
+
+[node name="ColorRect" type="ColorRect" parent="Reruntuhan/TerasTengah"]
+offset_left = -110.0
+offset_top = -12.0
+offset_right = 110.0
+offset_bottom = 12.0
+mouse_filter = 2
+color = Color(0.15, 0.17, 0.24, 1)
+
+[node name="BatuAtas" type="ColorRect" parent="Reruntuhan/TerasTengah"]
+offset_left = -110.0
+offset_top = -12.0
+offset_right = 110.0
+offset_bottom = -6.0
+mouse_filter = 2
+color = Color(0.25, 0.28, 0.38, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Reruntuhan/TerasTengah"]
+shape = SubResource("RectangleShape2D_undakan")
+
+[node name="AltarTengah" type="Area2D" parent="Reruntuhan"]
+position = Vector2(40, 300)
+script = ExtResource("7_altar")
+
+[node name="AuraLuar" type="ColorRect" parent="Reruntuhan/AltarTengah"]
+offset_left = -260.0
+offset_top = -160.0
+offset_right = 260.0
+offset_bottom = 76.0
+mouse_filter = 2
+color = Color(0.16, 0.72, 0.5, 0.08)
+
+[node name="AuraDalam" type="ColorRect" parent="Reruntuhan/AltarTengah"]
+offset_left = -210.0
+offset_top = -124.0
+offset_right = 210.0
+offset_bottom = 60.0
+mouse_filter = 2
+color = Color(0.22, 0.86, 0.56, 0.1)
+
+[node name="AlasBawah" type="ColorRect" parent="Reruntuhan/AltarTengah"]
+offset_left = -220.0
+offset_top = 30.0
+offset_right = 220.0
+offset_bottom = 58.0
+mouse_filter = 2
+color = Color(0.02, 0.09, 0.1, 1)
+
+[node name="GarisAlas" type="ColorRect" parent="Reruntuhan/AltarTengah"]
+offset_left = -220.0
+offset_top = 26.0
+offset_right = 220.0
+offset_bottom = 30.0
+mouse_filter = 2
+color = Color(0.58, 1, 0.32, 0.55)
+
+[node name="BadanAltar" type="ColorRect" parent="Reruntuhan/AltarTengah"]
+offset_left = -196.0
+offset_top = 6.0
+offset_right = 196.0
+offset_bottom = 30.0
+mouse_filter = 2
+color = Color(0.04, 0.16, 0.17, 1)
+
+[node name="PanelUkir" type="ColorRect" parent="Reruntuhan/AltarTengah"]
+offset_left = -160.0
+offset_top = 12.0
+offset_right = 160.0
+offset_bottom = 26.0
+mouse_filter = 2
+color = Color(0.02, 0.08, 0.09, 1)
+
+[node name="PitaLime" type="ColorRect" parent="Reruntuhan/AltarTengah"]
+offset_left = -196.0
+offset_top = 20.0
+offset_right = 196.0
+offset_bottom = 22.0
+mouse_filter = 2
+color = Color(0.6, 1, 0.34, 0.7)
+
+[node name="SisiAtas" type="ColorRect" parent="Reruntuhan/AltarTengah"]
+offset_left = -210.0
+offset_top = -12.0
+offset_right = 210.0
+offset_bottom = 6.0
+mouse_filter = 2
+color = Color(0.06, 0.26, 0.26, 1)
+
+[node name="GarisAtas" type="ColorRect" parent="Reruntuhan/AltarTengah"]
+offset_left = -210.0
+offset_top = -12.0
+offset_right = 210.0
+offset_bottom = -8.0
+mouse_filter = 2
+color = Color(0.68, 1, 0.38, 0.95)
+
+[node name="RuneKiri" type="Polygon2D" parent="Reruntuhan/AltarTengah"]
+position = Vector2(-130, 19)
+color = Color(0.62, 1, 0.34, 0.85)
+polygon = PackedVector2Array(0, -6, 6, 0, 0, 6, -6, 0)
+
+[node name="RuneTengah" type="Polygon2D" parent="Reruntuhan/AltarTengah"]
+position = Vector2(0, 19)
+color = Color(0.72, 1, 0.42, 0.95)
+polygon = PackedVector2Array(0, -7, 7, 0, 0, 7, -7, 0)
+
+[node name="RuneKanan" type="Polygon2D" parent="Reruntuhan/AltarTengah"]
+position = Vector2(130, 19)
+color = Color(0.62, 1, 0.34, 0.85)
+polygon = PackedVector2Array(0, -6, 6, 0, 0, 6, -6, 0)
+
+[node name="RelikAltar" type="Node2D" parent="Reruntuhan/AltarTengah"]
+position = Vector2(0, -44)
+
+[node name="Glow" type="ColorRect" parent="Reruntuhan/AltarTengah/RelikAltar"]
+offset_left = -36.0
+offset_top = -36.0
+offset_right = 36.0
+offset_bottom = 36.0
+mouse_filter = 2
+color = Color(0.58, 1, 0.32, 0.16)
+
+[node name="Inti" type="Polygon2D" parent="Reruntuhan/AltarTengah/RelikAltar"]
+color = Color(0.68, 1, 0.38, 0.95)
+polygon = PackedVector2Array(0, -16, 12, 0, 0, 16, -12, 0)
+
+[node name="IntiDalam" type="Polygon2D" parent="Reruntuhan/AltarTengah/RelikAltar"]
+color = Color(0.03, 0.15, 0.14, 0.9)
+polygon = PackedVector2Array(0, -8, 6, 0, 0, 8, -6, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Reruntuhan/AltarTengah"]
+position = Vector2(0, -78)
+shape = SubResource("RectangleShape2D_altar")
+
+[node name="Prompt" type="Label" parent="Reruntuhan/AltarTengah"]
+layout_mode = 1
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+offset_left = -170.0
+offset_top = -152.0
+offset_right = 170.0
+offset_bottom = -130.0
+theme_override_colors/font_color = Color(0.74, 1, 0.46, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.9)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 13
+text = "E : Buka Toko/Upgrade | F : Teleport"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AltarTengahPijakan" type="StaticBody2D" parent="Reruntuhan"]
+position = Vector2(40, 300)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Reruntuhan/AltarTengahPijakan"]
+position = Vector2(0, 23)
+shape = SubResource("RectangleShape2D_altar_pijakan")
+
+[node name="TerasKanan" type="StaticBody2D" parent="Reruntuhan"]
+position = Vector2(420, 370)
+
+[node name="ColorRect" type="ColorRect" parent="Reruntuhan/TerasKanan"]
+offset_left = -110.0
+offset_top = -12.0
+offset_right = 110.0
+offset_bottom = 12.0
+mouse_filter = 2
+color = Color(0.15, 0.17, 0.24, 1)
+
+[node name="BatuAtas" type="ColorRect" parent="Reruntuhan/TerasKanan"]
+offset_left = -110.0
+offset_top = -12.0
+offset_right = 110.0
+offset_bottom = -6.0
+mouse_filter = 2
+color = Color(0.25, 0.28, 0.38, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Reruntuhan/TerasKanan"]
+shape = SubResource("RectangleShape2D_undakan")
+
+[node name="TerasKanan2" type="StaticBody2D" parent="Reruntuhan"]
+position = Vector2(700, 440)
+
+[node name="ColorRect" type="ColorRect" parent="Reruntuhan/TerasKanan2"]
+offset_left = -110.0
+offset_top = -12.0
+offset_right = 110.0
+offset_bottom = 12.0
+mouse_filter = 2
+color = Color(0.15, 0.17, 0.24, 1)
+
+[node name="BatuAtas" type="ColorRect" parent="Reruntuhan/TerasKanan2"]
+offset_left = -110.0
+offset_top = -12.0
+offset_right = 110.0
+offset_bottom = -6.0
+mouse_filter = 2
+color = Color(0.25, 0.28, 0.38, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Reruntuhan/TerasKanan2"]
+shape = SubResource("RectangleShape2D_undakan")
+
+[node name="UndakanKanan" type="StaticBody2D" parent="Reruntuhan"]
+position = Vector2(980, 500)
+
+[node name="ColorRect" type="ColorRect" parent="Reruntuhan/UndakanKanan"]
+offset_left = -110.0
+offset_top = -12.0
+offset_right = 110.0
+offset_bottom = 12.0
+mouse_filter = 2
+color = Color(0.15, 0.17, 0.24, 1)
+
+[node name="BatuAtas" type="ColorRect" parent="Reruntuhan/UndakanKanan"]
+offset_left = -110.0
+offset_top = -12.0
+offset_right = 110.0
+offset_bottom = -6.0
+mouse_filter = 2
+color = Color(0.25, 0.28, 0.38, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Reruntuhan/UndakanKanan"]
+shape = SubResource("RectangleShape2D_undakan")
+
+[node name="BossEncounter" type="Node2D" parent="."]
+
+[node name="BossArenaGate" parent="BossEncounter" instance=ExtResource("5_boss_gate")]
+position = Vector2(1120, 405)
+
+[node name="BossArenaGateExit" parent="BossEncounter" instance=ExtResource("5_boss_gate")]
+position = Vector2(2000, 405)
+
+[node name="ArenaLeft" type="Marker2D" parent="BossEncounter"]
+position = Vector2(1170, 540)
+
+[node name="ArenaRight" type="Marker2D" parent="BossEncounter"]
+position = Vector2(1950, 540)
+
+[node name="ArenaTop" type="Marker2D" parent="BossEncounter"]
+position = Vector2(1560, 270)
+
+[node name="ArenaBottom" type="Marker2D" parent="BossEncounter"]
+position = Vector2(1560, 540)
+
+[node name="BossSpawn" type="Marker2D" parent="BossEncounter"]
+position = Vector2(1560, 492)
+
+[node name="BossArenaTrigger" parent="BossEncounter" instance=ExtResource("4_boss_trigger")]
+position = Vector2(1220, 450)
+boss_scene = ExtResource("3_boss")
+boss_id = "penjaga_hutan_larangan_biome2"
+allow_rematch = false
+boss_spawn_marker_path = NodePath("../BossSpawn")
+gate_path = NodePath("../BossArenaGate")
+gate_paths = Array[NodePath]([NodePath("../BossArenaGateExit")])
+arena_left_marker_path = NodePath("../ArenaLeft")
+arena_right_marker_path = NodePath("../ArenaRight")
+arena_top_marker_path = NodePath("../ArenaTop")
+arena_bottom_marker_path = NodePath("../ArenaBottom")
+debug_logging = true
+
+[node name="Portals" type="Node2D" parent="."]
+
+[node name="PintuHutanPurba" parent="Portals" groups=["boss_exit_portal"] instance=ExtResource("6_door")]
+position = Vector2(2160, 484)
+target_scene = "res://scenes/biome3.tscn"
+target_spawn_tag = "from_biome2"
+start_locked = true
+required_boss_id = "penjaga_hutan_larangan_biome2"
+gate_title = "GERBANG HUTAN PURBA"
+locked_feedback = "Gerbang tersegel. Kalahkan Penjaga Hutan Larangan."
+
+[node name="SpawnPoints" type="Node2D" parent="."]
+
+[node name="from_world" type="Marker2D" parent="SpawnPoints" groups=["level_spawn"]]
+position = Vector2(-1100, 500)
+
+[node name="from_biome3" type="Marker2D" parent="SpawnPoints" groups=["level_spawn"]]
+position = Vector2(2070, 500)
+
+[node name="SagaraSpawn" type="Marker2D" parent="."]
+position = Vector2(-1100, 500)
+
+[node name="Prasasti" type="Node2D" parent="."]
+
+[node name="PrasastiGua" parent="Prasasti" instance=ExtResource("8_teleporter")]
+position = Vector2(-1240, 536)
+teleporter_name = "Prasasti Gua"
+
+[node name="Sagara" parent="." instance=ExtResource("1_player")]
+position = Vector2(-1100, 500)
+
+[node name="HUD" parent="." instance=ExtResource("2_hud")]

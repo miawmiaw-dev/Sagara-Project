@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ItemDropData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://resources/items/item_drop_data.gd" id="1_data"]
+[ext_resource type="PackedScene" path="res://scenes/items/item_pickup.tscn" id="2_pickup"]
+
+[resource]
+script = ExtResource("1_data")
+item_id = "jiwa_leluhur"
+display_name = "Jiwa Leluhur"
+description = "Menambah Jiwa yang lebih banyak."
+kind = 0
+amount_min = 4
+amount_max = 8
+drop_chance = 1.0
+pickup_scene = ExtResource("2_pickup")
+color = Color(0.82, 0.55, 1, 1)
+scatter_radius = 24.0

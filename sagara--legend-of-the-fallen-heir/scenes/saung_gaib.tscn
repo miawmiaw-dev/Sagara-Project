@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://saunggaib001"]
+
+[ext_resource type="Script" path="res://scripts/saung_gaib.gd" id="1_sg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mbah"]
+size = Vector2(32, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_zone"]
+size = Vector2(64, 64)
+
+[node name="SaungGaib" type="Node2D"]
+script = ExtResource("1_sg")
+
+[node name="MbahDukun" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MbahDukun"]
+shape = SubResource("RectangleShape2D_mbah")
+
+[node name="InteractionZone" type="Area2D" parent="MbahDukun"]
+collision_layer = 0
+collision_mask = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MbahDukun/InteractionZone"]
+shape = SubResource("RectangleShape2D_zone")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -48.0
+offset_top = -40.0
+offset_right = 48.0
+offset_bottom = -24.0
+text = "Tekan E untuk bicara"
+horizontal_alignment = 1

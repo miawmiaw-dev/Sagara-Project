@@ -1,0 +1,86 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/platforming/climbable_wall.gd" id="1_climb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_climb"]
+size = Vector2(80, 640)
+
+[node name="ClimbableWall" type="Area2D" groups=["climbable_wall"]]
+collision_layer = 0
+collision_mask = 1
+monitorable = false
+script = ExtResource("1_climb")
+
+[node name="VineKiri" type="ColorRect" parent="."]
+offset_left = -24.0
+offset_top = -320.0
+offset_right = -12.0
+offset_bottom = 320.0
+mouse_filter = 2
+color = Color(0.16, 0.34, 0.18, 1)
+
+[node name="VineKanan" type="ColorRect" parent="."]
+offset_left = 12.0
+offset_top = -320.0
+offset_right = 24.0
+offset_bottom = 320.0
+mouse_filter = 2
+color = Color(0.16, 0.34, 0.18, 1)
+
+[node name="VineTengah" type="ColorRect" parent="."]
+offset_left = -3.0
+offset_top = -320.0
+offset_right = 3.0
+offset_bottom = 320.0
+mouse_filter = 2
+color = Color(0.22, 0.45, 0.22, 0.85)
+
+[node name="Daun1" type="Polygon2D" parent="."]
+position = Vector2(-18, -230)
+color = Color(0.36, 0.68, 0.3, 1)
+polygon = PackedVector2Array(0, 0, 30, -12, 46, 2, 18, 14)
+
+[node name="Daun2" type="Polygon2D" parent="."]
+position = Vector2(18, -150)
+color = Color(0.32, 0.62, 0.28, 1)
+polygon = PackedVector2Array(0, 0, -32, -10, -48, 4, -16, 14)
+
+[node name="Daun3" type="Polygon2D" parent="."]
+position = Vector2(-16, -40)
+color = Color(0.4, 0.72, 0.32, 1)
+polygon = PackedVector2Array(0, 0, 28, -12, 44, 2, 16, 14)
+
+[node name="Daun4" type="Polygon2D" parent="."]
+position = Vector2(16, 90)
+color = Color(0.3, 0.58, 0.25, 1)
+polygon = PackedVector2Array(0, 0, -30, -10, -46, 4, -14, 14)
+
+[node name="Daun5" type="Polygon2D" parent="."]
+position = Vector2(-18, 210)
+color = Color(0.36, 0.66, 0.3, 1)
+polygon = PackedVector2Array(0, 0, 30, -12, 46, 2, 18, 14)
+
+[node name="Glow" type="ColorRect" parent="."]
+offset_left = -34.0
+offset_top = -320.0
+offset_right = 34.0
+offset_bottom = 320.0
+mouse_filter = 2
+color = Color(0.5, 0.95, 0.4, 0.04)
+
+[node name="Hint" type="Label" parent="."]
+offset_left = -110.0
+offset_top = -358.0
+offset_right = 110.0
+offset_bottom = -330.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.78, 1, 0.7, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.85)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 13
+text = "AKAR PANJAT: TAHAN W"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_climb")

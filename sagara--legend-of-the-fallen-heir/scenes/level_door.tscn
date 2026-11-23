@@ -1,0 +1,117 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/level_door.gd" id="1_door"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_door"]
+size = Vector2(64, 112)
+
+[node name="LevelDoor" type="Area2D" groups=["level_door"]]
+z_index = 1
+collision_layer = 0
+collision_mask = 1
+script = ExtResource("1_door")
+
+[node name="Glow" type="ColorRect" parent="."]
+offset_left = -92.0
+offset_top = -86.0
+offset_right = 92.0
+offset_bottom = 82.0
+mouse_filter = 2
+color = Color(0.3, 0.95, 0.75, 0.16)
+
+[node name="FrameKiri" type="ColorRect" parent="."]
+offset_left = -46.0
+offset_top = -62.0
+offset_right = -28.0
+offset_bottom = 56.0
+mouse_filter = 2
+color = Color(0.25, 0.24, 0.28, 1)
+
+[node name="FrameKanan" type="ColorRect" parent="."]
+offset_left = 28.0
+offset_top = -62.0
+offset_right = 46.0
+offset_bottom = 56.0
+mouse_filter = 2
+color = Color(0.25, 0.24, 0.28, 1)
+
+[node name="FrameAtas" type="ColorRect" parent="."]
+offset_left = -50.0
+offset_top = -76.0
+offset_right = 50.0
+offset_bottom = -62.0
+mouse_filter = 2
+color = Color(0.31, 0.3, 0.35, 1)
+
+[node name="FrameBawah" type="ColorRect" parent="."]
+offset_left = -52.0
+offset_top = 56.0
+offset_right = 52.0
+offset_bottom = 68.0
+mouse_filter = 2
+color = Color(0.22, 0.21, 0.25, 1)
+
+[node name="Core" type="ColorRect" parent="."]
+offset_left = -28.0
+offset_top = -62.0
+offset_right = 28.0
+offset_bottom = 56.0
+mouse_filter = 2
+color = Color(0.09, 0.06, 0.08, 0.92)
+
+[node name="UkiranKiri" type="ColorRect" parent="."]
+offset_left = -42.0
+offset_top = -34.0
+offset_right = -34.0
+offset_bottom = 22.0
+mouse_filter = 2
+color = Color(0.37, 0.38, 0.32, 0.9)
+
+[node name="UkiranKanan" type="ColorRect" parent="."]
+offset_left = 34.0
+offset_top = -34.0
+offset_right = 42.0
+offset_bottom = 22.0
+mouse_filter = 2
+color = Color(0.37, 0.38, 0.32, 0.9)
+
+[node name="Rune" type="Polygon2D" parent="."]
+position = Vector2(0, -4)
+color = Color(0.62, 0.22, 0.24, 0.7)
+polygon = PackedVector2Array(0, -26, 18, 0, 0, 26, -18, 0)
+
+[node name="RuneCore" type="Polygon2D" parent="."]
+position = Vector2(0, -4)
+color = Color(0.05, 0.03, 0.04, 0.85)
+polygon = PackedVector2Array(0, -15, 10, 0, 0, 15, -10, 0)
+
+[node name="Title" type="Label" parent="."]
+offset_left = -120.0
+offset_top = -108.0
+offset_right = 120.0
+offset_bottom = -80.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.8, 1, 0.88, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.9)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 15
+text = "GERBANG CANDI"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Hint" type="Label" parent="."]
+offset_left = -110.0
+offset_top = 76.0
+offset_right = 110.0
+offset_bottom = 98.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.62, 0.94, 0.75, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.9)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 12
+text = "TERSEGEL"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_door")

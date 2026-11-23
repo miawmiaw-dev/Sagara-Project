@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ItemDropData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://resources/items/item_drop_data.gd" id="1_data"]
+[ext_resource type="PackedScene" path="res://scenes/items/item_pickup.tscn" id="2_pickup"]
+
+[resource]
+script = ExtResource("1_data")
+item_id = "pemulih_hp"
+display_name = "Pemulih HP"
+description = "Memulihkan 25 HP."
+kind = 1
+amount_min = 25
+amount_max = 25
+drop_chance = 0.4
+pickup_scene = ExtResource("2_pickup")
+color = Color(0.38, 0.95, 0.55, 1)
+scatter_radius = 16.0

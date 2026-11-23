@@ -1,0 +1,109 @@
+[gd_scene load_steps=21 format=3]
+
+[ext_resource type="Script" path="res://scenes/player/player.gd" id="1_player"]
+[ext_resource type="Script" path="res://scripts/combat/state_machine.gd" id="2_state_machine"]
+[ext_resource type="Script" path="res://scripts/combat/states/idle_state.gd" id="3_idle"]
+[ext_resource type="Script" path="res://scripts/combat/states/run_state.gd" id="4_run"]
+[ext_resource type="Script" path="res://scripts/combat/states/jump_state.gd" id="5_jump"]
+[ext_resource type="Script" path="res://scripts/combat/states/fall_state.gd" id="6_fall"]
+[ext_resource type="Script" path="res://scripts/combat/states/dodge_state.gd" id="7_dodge"]
+[ext_resource type="Script" path="res://scripts/combat/states/attack_state.gd" id="8_attack"]
+[ext_resource type="Script" path="res://scripts/combat/states/dive_state.gd" id="9_dive"]
+[ext_resource type="Script" path="res://scripts/combat/states/parry_state.gd" id="10_parry"]
+[ext_resource type="Script" path="res://scripts/combat/player_combat.gd" id="11_combat"]
+[ext_resource type="Resource" path="res://resources/weapons/default_weapon.tres" id="12_weapon"]
+[ext_resource type="Resource" path="res://resources/combat/default_dodge.tres" id="13_dodge_data"]
+[ext_resource type="Script" path="res://scripts/combat/weapon_hitbox.gd" id="14_weapon_hitbox"]
+[ext_resource type="Script" path="res://scripts/combat/states/special_attack_state.gd" id="15_special"]
+[ext_resource type="Script" path="res://scripts/camera_juice.gd" id="16_camera_juice"]
+[ext_resource type="PackedScene" path="res://scenes/player/stun_indicator.tscn" id="17_stun_indicator"]
+[ext_resource type="Script" path="res://scripts/combat/states/climb_state.gd" id="18_climb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_player"]
+size = Vector2(32, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_weapon_hitbox"]
+size = Vector2(48, 48)
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_layer = 1
+collision_mask = 5
+script = ExtResource("1_player")
+current_weapon = ExtResource("12_weapon")
+dodge_data = ExtResource("13_dodge_data")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -13.0
+offset_top = -33.0
+offset_right = 19.0
+offset_bottom = 31.0
+
+[node name="AttackEffect" type="Node2D" parent="."]
+visible = false
+z_index = 1
+
+[node name="Slash" type="ColorRect" parent="AttackEffect"]
+offset_left = -20.0
+offset_top = -6.0
+offset_right = 20.0
+offset_bottom = 6.0
+mouse_filter = 2
+color = Color(1, 1, 0.7, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3, -1)
+shape = SubResource("RectangleShape2D_player")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+script = ExtResource("16_camera_juice")
+
+[node name="StunIndicator" parent="." instance=ExtResource("17_stun_indicator")]
+
+[node name="Combat" type="Node2D" parent="."]
+script = ExtResource("11_combat")
+
+[node name="WeaponHitbox" type="Area2D" parent="Combat"]
+collision_layer = 0
+collision_mask = 2
+monitoring = false
+monitorable = false
+script = ExtResource("14_weapon_hitbox")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Combat/WeaponHitbox"]
+disabled = true
+shape = SubResource("RectangleShape2D_weapon_hitbox")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("2_state_machine")
+initial_state_name = &"Idle"
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("3_idle")
+
+[node name="Run" type="Node" parent="StateMachine"]
+script = ExtResource("4_run")
+
+[node name="Jump" type="Node" parent="StateMachine"]
+script = ExtResource("5_jump")
+
+[node name="Fall" type="Node" parent="StateMachine"]
+script = ExtResource("6_fall")
+
+[node name="Climb" type="Node" parent="StateMachine"]
+script = ExtResource("18_climb")
+
+[node name="Dodge" type="Node" parent="StateMachine"]
+script = ExtResource("7_dodge")
+
+[node name="Attack" type="Node" parent="StateMachine"]
+script = ExtResource("8_attack")
+
+[node name="Dive" type="Node" parent="StateMachine"]
+script = ExtResource("9_dive")
+
+[node name="Special" type="Node" parent="StateMachine"]
+script = ExtResource("15_special")
+
+[node name="Parry" type="Node" parent="StateMachine"]
+script = ExtResource("10_parry")

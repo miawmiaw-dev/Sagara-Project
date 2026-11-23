@@ -1,0 +1,645 @@
+[gd_scene load_steps=26 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/player/player.tscn" id="1_player"]
+[ext_resource type="PackedScene" path="res://scenes/hud.tscn" id="2_hud"]
+[ext_resource type="PackedScene" path="res://scenes/portal.tscn" id="3_portal"]
+[ext_resource type="PackedScene" path="res://scenes/teleporter.tscn" id="4_teleporter"]
+[ext_resource type="PackedScene" path="res://scenes/chest.tscn" id="5_chest"]
+[ext_resource type="PackedScene" path="res://scenes/enemies/melee_enemy.tscn" id="6_melee"]
+[ext_resource type="PackedScene" path="res://scenes/platforming/moving_platform.tscn" id="7_moving"]
+[ext_resource type="PackedScene" path="res://scenes/platforming/gravity_zone.tscn" id="8_gravity"]
+[ext_resource type="PackedScene" path="res://scenes/level_door.tscn" id="9_door"]
+[ext_resource type="Script" path="res://scripts/hazard_area.gd" id="10_hazard"]
+[ext_resource type="PackedScene" path="res://scenes/enemies/elite_revenant.tscn" id="11_elite"]
+[ext_resource type="PackedScene" path="res://scenes/bosses/boss_arena_gate.tscn" id="12_boss_gate"]
+[ext_resource type="PackedScene" path="res://scenes/bosses/boss_arena_trigger.tscn" id="13_boss_trigger"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lantai_awal"]
+size = Vector2(640, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dinding_sisi"]
+size = Vector2(40, 1200)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_teras_kiri"]
+size = Vector2(220, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_teras_tengah"]
+size = Vector2(220, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_teras_atas"]
+size = Vector2(240, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_teras_layang"]
+size = Vector2(240, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_teras_gantung"]
+size = Vector2(240, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_teras_penyelamat"]
+size = Vector2(200, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jurang_runtuhan"]
+size = Vector2(5000, 220)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lantai_akhir"]
+size = Vector2(960, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_plafon_arena_murka"]
+size = Vector2(600, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dinding_atas_arena"]
+size = Vector2(40, 640)
+
+[node name="Biome4" type="Node2D"]
+
+[node name="BiomeBackground" type="Node2D" parent="."]
+z_index = -10
+
+[node name="LangitSenja" type="ColorRect" parent="BiomeBackground"]
+offset_left = -2600.0
+offset_top = -1800.0
+offset_right = 3000.0
+offset_bottom = 1500.0
+mouse_filter = 2
+color = Color(0.08, 0.04, 0.1, 1)
+
+[node name="LapisanAwan" type="ColorRect" parent="BiomeBackground"]
+offset_left = -2600.0
+offset_top = -1800.0
+offset_right = 3000.0
+offset_bottom = -600.0
+mouse_filter = 2
+color = Color(0.15, 0.08, 0.2, 0.45)
+
+[node name="MatahariTerbenam" type="ColorRect" parent="BiomeBackground"]
+offset_left = 1200.0
+offset_top = -1450.0
+offset_right = 1800.0
+offset_bottom = -900.0
+mouse_filter = 2
+color = Color(0.6, 0.25, 0.15, 0.2)
+
+[node name="KabutUngu" type="ColorRect" parent="BiomeBackground"]
+offset_left = -2600.0
+offset_top = 300.0
+offset_right = 3000.0
+offset_bottom = 1500.0
+mouse_filter = 2
+color = Color(0.12, 0.06, 0.15, 0.35)
+
+[node name="ReruntuhanLatar" type="Node2D" parent="BiomeBackground"]
+
+[node name="PilarHancurA" type="ColorRect" parent="BiomeBackground/ReruntuhanLatar"]
+offset_left = 260.0
+offset_top = -300.0
+offset_right = 340.0
+offset_bottom = 700.0
+mouse_filter = 2
+color = Color(0.1, 0.07, 0.12, 1)
+
+[node name="PilarHancurB" type="ColorRect" parent="BiomeBackground/ReruntuhanLatar"]
+offset_left = 700.0
+offset_top = -400.0
+offset_right = 780.0
+offset_bottom = 700.0
+mouse_filter = 2
+color = Color(0.09, 0.06, 0.11, 1)
+
+[node name="PilarHancurC" type="ColorRect" parent="BiomeBackground/ReruntuhanLatar"]
+offset_left = 1250.0
+offset_top = -280.0
+offset_right = 1320.0
+offset_bottom = 700.0
+mouse_filter = 2
+color = Color(0.11, 0.07, 0.13, 1)
+
+[node name="PilarHancurD" type="ColorRect" parent="BiomeBackground/ReruntuhanLatar"]
+offset_left = 1810.0
+offset_top = -260.0
+offset_right = 1880.0
+offset_bottom = 700.0
+mouse_filter = 2
+color = Color(0.09, 0.06, 0.11, 1)
+
+[node name="BingkaiKuil" type="ColorRect" parent="BiomeBackground/ReruntuhanLatar"]
+offset_left = 900.0
+offset_top = -520.0
+offset_right = 1900.0
+offset_bottom = -400.0
+mouse_filter = 2
+color = Color(0.13, 0.09, 0.16, 0.85)
+
+[node name="ReliefKuil" type="ColorRect" parent="BiomeBackground/ReruntuhanLatar"]
+offset_left = 1100.0
+offset_top = -500.0
+offset_right = 1700.0
+offset_bottom = -200.0
+mouse_filter = 2
+color = Color(0.16, 0.1, 0.18, 0.6)
+
+[node name="CahayaTemaram" type="Polygon2D" parent="BiomeBackground"]
+color = Color(0.7, 0.35, 0.15, 0.04)
+polygon = PackedVector2Array(-1800, -1200, -900, -1200, -650, 700, -1550, 700)
+
+[node name="CahayaTemaram2" type="Polygon2D" parent="BiomeBackground"]
+color = Color(0.8, 0.4, 0.2, 0.03)
+polygon = PackedVector2Array(900, -1300, 1500, -1300, 1720, 500, 1120, 500)
+
+[node name="LantaiAwal" type="StaticBody2D" parent="."]
+position = Vector2(-1320, 560)
+
+[node name="Batu" type="ColorRect" parent="LantaiAwal"]
+offset_left = -320.0
+offset_top = -20.0
+offset_right = 320.0
+offset_bottom = 20.0
+mouse_filter = 2
+color = Color(0.1, 0.08, 0.14, 1)
+
+[node name="LumutRunggu" type="ColorRect" parent="LantaiAwal"]
+offset_left = -320.0
+offset_top = -20.0
+offset_right = 320.0
+offset_bottom = -11.0
+mouse_filter = 2
+color = Color(0.2, 0.15, 0.25, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LantaiAwal"]
+shape = SubResource("RectangleShape2D_lantai_awal")
+
+[node name="DindingKiri" type="StaticBody2D" parent="."]
+position = Vector2(-1640, 200)
+
+[node name="Batu" type="ColorRect" parent="DindingKiri"]
+offset_left = -20.0
+offset_top = -600.0
+offset_right = 20.0
+offset_bottom = 600.0
+mouse_filter = 2
+color = Color(0.07, 0.05, 0.1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DindingKiri"]
+shape = SubResource("RectangleShape2D_dinding_sisi")
+
+[node name="TerasKiri" type="StaticBody2D" parent="."]
+position = Vector2(-850, 492)
+
+[node name="Batu" type="ColorRect" parent="TerasKiri"]
+offset_left = -110.0
+offset_top = -12.0
+offset_right = 110.0
+offset_bottom = 12.0
+mouse_filter = 2
+color = Color(0.12, 0.09, 0.16, 1)
+
+[node name="Ukiran" type="ColorRect" parent="TerasKiri"]
+offset_left = -110.0
+offset_top = -12.0
+offset_right = -50.0
+offset_bottom = -6.0
+mouse_filter = 2
+color = Color(0.25, 0.15, 0.3, 0.7)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TerasKiri"]
+shape = SubResource("RectangleShape2D_teras_kiri")
+
+[node name="TerasTengah" type="StaticBody2D" parent="."]
+position = Vector2(-590, 424)
+
+[node name="Batu" type="ColorRect" parent="TerasTengah"]
+offset_left = -110.0
+offset_top = -12.0
+offset_right = 110.0
+offset_bottom = 12.0
+mouse_filter = 2
+color = Color(0.12, 0.09, 0.16, 1)
+
+[node name="Ukiran" type="ColorRect" parent="TerasTengah"]
+offset_left = -110.0
+offset_top = -12.0
+offset_right = -50.0
+offset_bottom = -6.0
+mouse_filter = 2
+color = Color(0.25, 0.15, 0.3, 0.7)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TerasTengah"]
+shape = SubResource("RectangleShape2D_teras_tengah")
+
+[node name="TerasAtas" type="StaticBody2D" parent="."]
+position = Vector2(-300, 360)
+
+[node name="Batu" type="ColorRect" parent="TerasAtas"]
+offset_left = -120.0
+offset_top = -12.0
+offset_right = 120.0
+offset_bottom = 12.0
+mouse_filter = 2
+color = Color(0.13, 0.1, 0.17, 1)
+
+[node name="LantaiKuil" type="ColorRect" parent="TerasAtas"]
+offset_left = -120.0
+offset_top = -12.0
+offset_right = -40.0
+offset_bottom = -6.0
+mouse_filter = 2
+color = Color(0.28, 0.16, 0.35, 0.75)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TerasAtas"]
+shape = SubResource("RectangleShape2D_teras_atas")
+
+[node name="TerasLayang" type="StaticBody2D" parent="."]
+position = Vector2(160, 252)
+
+[node name="Batu" type="ColorRect" parent="TerasLayang"]
+offset_left = -120.0
+offset_top = -12.0
+offset_right = 120.0
+offset_bottom = 12.0
+mouse_filter = 2
+color = Color(0.13, 0.1, 0.17, 1)
+
+[node name="LantaiKuil" type="ColorRect" parent="TerasLayang"]
+offset_left = -120.0
+offset_top = -12.0
+offset_right = -40.0
+offset_bottom = -6.0
+mouse_filter = 2
+color = Color(0.28, 0.16, 0.35, 0.75)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TerasLayang"]
+shape = SubResource("RectangleShape2D_teras_layang")
+
+[node name="TerasGantung" type="StaticBody2D" parent="."]
+position = Vector2(500, 192)
+
+[node name="Batu" type="ColorRect" parent="TerasGantung"]
+offset_left = -120.0
+offset_top = -12.0
+offset_right = 120.0
+offset_bottom = 12.0
+mouse_filter = 2
+color = Color(0.12, 0.09, 0.16, 1)
+
+[node name="Ukiran" type="ColorRect" parent="TerasGantung"]
+offset_left = -120.0
+offset_top = -12.0
+offset_right = -60.0
+offset_bottom = -6.0
+mouse_filter = 2
+color = Color(0.25, 0.15, 0.3, 0.7)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TerasGantung"]
+shape = SubResource("RectangleShape2D_teras_gantung")
+
+[node name="TerasPenyelamat" type="StaticBody2D" parent="."]
+position = Vector2(740, 512)
+
+[node name="Batu" type="ColorRect" parent="TerasPenyelamat"]
+offset_left = -100.0
+offset_top = -12.0
+offset_right = 100.0
+offset_bottom = 12.0
+mouse_filter = 2
+color = Color(0.16, 0.1, 0.2, 1)
+
+[node name="Pendar" type="ColorRect" parent="TerasPenyelamat"]
+offset_left = -100.0
+offset_top = -12.0
+offset_right = 100.0
+offset_bottom = -6.0
+mouse_filter = 2
+color = Color(0.48, 0.26, 0.58, 0.8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TerasPenyelamat"]
+shape = SubResource("RectangleShape2D_teras_penyelamat")
+
+[node name="TerasAkhir" type="StaticBody2D" parent="."]
+position = Vector2(1380, 80)
+
+[node name="Batu" type="ColorRect" parent="TerasAkhir"]
+offset_left = -480.0
+offset_top = -20.0
+offset_right = 480.0
+offset_bottom = 20.0
+mouse_filter = 2
+color = Color(0.14, 0.11, 0.18, 1)
+
+[node name="LantaiAltar" type="ColorRect" parent="TerasAkhir"]
+offset_left = -480.0
+offset_top = -20.0
+offset_right = -220.0
+offset_bottom = -11.0
+mouse_filter = 2
+color = Color(0.3, 0.18, 0.38, 0.7)
+
+[node name="PilarAltarKiri" type="ColorRect" parent="TerasAkhir"]
+offset_left = -450.0
+offset_top = -320.0
+offset_right = -380.0
+offset_bottom = -20.0
+mouse_filter = 2
+color = Color(0.15, 0.11, 0.2, 1)
+
+[node name="PilarAltarKanan" type="ColorRect" parent="TerasAkhir"]
+offset_left = 380.0
+offset_top = -320.0
+offset_right = 450.0
+offset_bottom = -20.0
+mouse_filter = 2
+color = Color(0.15, 0.11, 0.2, 1)
+
+[node name="LintelAltar" type="ColorRect" parent="TerasAkhir"]
+offset_left = -480.0
+offset_top = -370.0
+offset_right = 480.0
+offset_bottom = -320.0
+mouse_filter = 2
+color = Color(0.18, 0.13, 0.24, 1)
+
+[node name="IntiBercahaya" type="ColorRect" parent="TerasAkhir"]
+offset_left = -60.0
+offset_top = -200.0
+offset_right = 60.0
+offset_bottom = -40.0
+mouse_filter = 2
+color = Color(0.6, 0.3, 0.7, 0.35)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TerasAkhir"]
+shape = SubResource("RectangleShape2D_lantai_akhir")
+
+[node name="PlafonArena" type="StaticBody2D" parent="."]
+position = Vector2(1520, -230)
+
+[node name="Batu" type="ColorRect" parent="PlafonArena"]
+offset_left = -300.0
+offset_top = -20.0
+offset_right = 300.0
+offset_bottom = 20.0
+mouse_filter = 2
+color = Color(0.12, 0.09, 0.16, 1)
+
+[node name="Ukiran" type="ColorRect" parent="PlafonArena"]
+offset_left = -300.0
+offset_top = -20.0
+offset_right = 300.0
+offset_bottom = -12.0
+mouse_filter = 2
+color = Color(0.26, 0.16, 0.33, 0.8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlafonArena"]
+shape = SubResource("RectangleShape2D_plafon_arena_murka")
+
+[node name="DindingAtasArenaKiri" type="StaticBody2D" parent="."]
+position = Vector2(1280, -530)
+
+[node name="Batu" type="ColorRect" parent="DindingAtasArenaKiri"]
+offset_left = -20.0
+offset_top = -320.0
+offset_right = 20.0
+offset_bottom = 320.0
+mouse_filter = 2
+color = Color(0.09, 0.06, 0.11, 1)
+
+[node name="Ukiran" type="ColorRect" parent="DindingAtasArenaKiri"]
+offset_left = -20.0
+offset_top = -320.0
+offset_right = -12.0
+offset_bottom = 320.0
+mouse_filter = 2
+color = Color(0.25, 0.15, 0.3, 0.7)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DindingAtasArenaKiri"]
+shape = SubResource("RectangleShape2D_dinding_atas_arena")
+
+[node name="DindingAtasArenaKanan" type="StaticBody2D" parent="."]
+position = Vector2(1760, -530)
+
+[node name="Batu" type="ColorRect" parent="DindingAtasArenaKanan"]
+offset_left = -20.0
+offset_top = -320.0
+offset_right = 20.0
+offset_bottom = 320.0
+mouse_filter = 2
+color = Color(0.09, 0.06, 0.11, 1)
+
+[node name="Ukiran" type="ColorRect" parent="DindingAtasArenaKanan"]
+offset_left = 12.0
+offset_top = -320.0
+offset_right = 20.0
+offset_bottom = 320.0
+mouse_filter = 2
+color = Color(0.25, 0.15, 0.3, 0.7)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DindingAtasArenaKanan"]
+shape = SubResource("RectangleShape2D_dinding_atas_arena")
+
+[node name="DindingKanan" type="StaticBody2D" parent="."]
+position = Vector2(1900, 200)
+
+[node name="Batu" type="ColorRect" parent="DindingKanan"]
+offset_left = -20.0
+offset_top = -600.0
+offset_right = 20.0
+offset_bottom = 600.0
+mouse_filter = 2
+color = Color(0.07, 0.05, 0.1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DindingKanan"]
+shape = SubResource("RectangleShape2D_dinding_sisi")
+
+[node name="Platforming" type="Node2D" parent="."]
+
+[node name="ZonaAntiGravitasiA" parent="Platforming" instance=ExtResource("8_gravity")]
+position = Vector2(-40, 250)
+gravity_scale = 0.45
+upward_acceleration = 900.0
+max_rise_speed = 140.0
+vertical_damping = 5.0
+pull_toward_center = false
+
+[node name="ZonaAntiGravitasiB" parent="Platforming" instance=ExtResource("8_gravity")]
+position = Vector2(760, 280)
+scale = Vector2(0.85, 1.6)
+gravity_scale = 0.2
+upward_acceleration = 600.0
+max_rise_speed = 110.0
+vertical_damping = 7.0
+pull_toward_center = false
+
+[node name="LabelZonaA" type="Label" parent="Platforming"]
+offset_left = -200.0
+offset_top = 60.0
+offset_right = 120.0
+offset_bottom = 82.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.72, 0.48, 0.9, 0.75)
+theme_override_colors/font_outline_color = Color(0.04, 0.02, 0.06, 0.9)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 12
+text = "ARUS ANTI-GRAVITASI"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LabelZonaB" type="Label" parent="Platforming"]
+offset_left = 600.0
+offset_top = 30.0
+offset_right = 920.0
+offset_bottom = 52.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.72, 0.48, 0.9, 0.75)
+theme_override_colors/font_outline_color = Color(0.04, 0.02, 0.06, 0.9)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 12
+text = "ARUS ANTI-GRAVITASI"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LabelPenyelamat" type="Label" parent="Platforming"]
+offset_left = 580.0
+offset_top = 458.0
+offset_right = 900.0
+offset_bottom = 478.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.62, 0.42, 0.72, 0.7)
+theme_override_colors/font_outline_color = Color(0.04, 0.02, 0.06, 0.9)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 10
+text = "TERAS PENYELAMAT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlatformA" parent="Platforming" instance=ExtResource("7_moving")]
+modulate = Color(0.82, 0.68, 1, 1)
+position = Vector2(720, 140)
+travel_offset = Vector2(0, -120)
+travel_time = 2.6
+wait_at_ends = 0.2
+start_phase = 0.0
+
+[node name="PlatformB" parent="Platforming" instance=ExtResource("7_moving")]
+modulate = Color(0.82, 0.68, 1, 1)
+position = Vector2(900, 20)
+travel_offset = Vector2(120, 0)
+travel_time = 3.4
+wait_at_ends = 0.25
+start_phase = 0.3
+
+[node name="Hazards" type="Node2D" parent="."]
+
+[node name="JurangRuntuhan" type="Area2D" parent="Hazards"]
+position = Vector2(300, 900)
+collision_layer = 0
+script = ExtResource("10_hazard")
+respawn_on_hit = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hazards/JurangRuntuhan"]
+shape = SubResource("RectangleShape2D_jurang_runtuhan")
+
+[node name="Visual" type="ColorRect" parent="Hazards/JurangRuntuhan"]
+offset_left = -2500.0
+offset_top = -110.0
+offset_right = 2500.0
+offset_bottom = 110.0
+mouse_filter = 2
+color = Color(0.35, 0.1, 0.3, 0.35)
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="PenjagaTerasAtas" parent="Enemies" instance=ExtResource("6_melee")]
+position = Vector2(-300, 316)
+patrol_range = 60.0
+
+[node name="PenjagaAltar" parent="Enemies" instance=ExtResource("6_melee")]
+position = Vector2(1040, 28)
+patrol_range = 20.0
+
+[node name="PetiPusaka" parent="." instance=ExtResource("5_chest")]
+position = Vector2(520, 154)
+
+[node name="Prasasti" type="Node2D" parent="."]
+
+[node name="PrasastiReruntuhan" parent="Prasasti" instance=ExtResource("4_teleporter")]
+position = Vector2(-1260, 536)
+teleporter_name = "Prasasti Reruntuhan"
+
+[node name="PrasastiAltar" parent="Prasasti" instance=ExtResource("4_teleporter")]
+position = Vector2(960, 56)
+teleporter_name = "Prasasti Altar"
+
+[node name="BossEncounter" type="Node2D" parent="."]
+
+[node name="BossArenaGate" parent="BossEncounter" instance=ExtResource("12_boss_gate")]
+position = Vector2(1280, -75)
+
+[node name="BossArenaGateExit" parent="BossEncounter" instance=ExtResource("12_boss_gate")]
+position = Vector2(1760, -75)
+
+[node name="ArenaLeft" type="Marker2D" parent="BossEncounter"]
+position = Vector2(1330, 20)
+
+[node name="ArenaRight" type="Marker2D" parent="BossEncounter"]
+position = Vector2(1710, 20)
+
+[node name="ArenaTop" type="Marker2D" parent="BossEncounter"]
+position = Vector2(1520, -210)
+
+[node name="ArenaBottom" type="Marker2D" parent="BossEncounter"]
+position = Vector2(1520, 60)
+
+[node name="BossSpawn" type="Marker2D" parent="BossEncounter"]
+position = Vector2(1520, 24)
+
+[node name="MurkaLeluhur" parent="BossEncounter" instance=ExtResource("11_elite")]
+position = Vector2(1520, 24)
+patrol_range = 100.0
+max_hp = 300
+slash_damage = 20
+hex_damage = 14
+boss_id = "murka_leluhur"
+boss_display_name = "Murka Leluhur"
+
+[node name="BossArenaTrigger" parent="BossEncounter" instance=ExtResource("13_boss_trigger")]
+position = Vector2(1390, -30)
+boss_path = NodePath("../MurkaLeluhur")
+boss_id = "murka_leluhur"
+allow_rematch = false
+boss_spawn_marker_path = NodePath("../BossSpawn")
+gate_path = NodePath("../BossArenaGate")
+gate_paths = Array[NodePath]([NodePath("../BossArenaGateExit")])
+arena_left_marker_path = NodePath("../ArenaLeft")
+arena_right_marker_path = NodePath("../ArenaRight")
+arena_top_marker_path = NodePath("../ArenaTop")
+arena_bottom_marker_path = NodePath("../ArenaBottom")
+debug_logging = true
+
+[node name="Portals" type="Node2D" parent="."]
+
+[node name="PortalKembali" parent="Portals" instance=ExtResource("3_portal")]
+position = Vector2(-1520, 494)
+target_scene = "res://scenes/biome3.tscn"
+target_spawn_tag = "from_biome4"
+start_disabled = false
+
+[node name="GerbangPurba" parent="Portals" groups=["boss_exit_portal"] instance=ExtResource("9_door")]
+position = Vector2(1820, 4)
+target_scene = "res://scenes/biome3.tscn"
+target_spawn_tag = "from_biome4"
+start_locked = true
+required_boss_id = "murka_leluhur"
+gate_title = "GERBANG DUNIA LULUHUR"
+locked_feedback = "Gerbang tersegel. Kalahkan Murka Leluhur."
+locked_hint = "TERSEGEL"
+open_hint = "MASUK"
+
+[node name="SpawnPoints" type="Node2D" parent="."]
+
+[node name="from_biome3" type="Marker2D" parent="SpawnPoints" groups=["level_spawn"]]
+position = Vector2(-1420, 500)
+
+[node name="from_world" type="Marker2D" parent="SpawnPoints" groups=["level_spawn"]]
+position = Vector2(-1360, 500)
+
+[node name="Sagara" parent="." instance=ExtResource("1_player")]
+position = Vector2(-1420, 500)
+
+[node name="HUD" parent="." instance=ExtResource("2_hud")]

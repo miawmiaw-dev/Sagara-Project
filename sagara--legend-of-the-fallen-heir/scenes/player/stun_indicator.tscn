@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/player/stun_indicator.gd" id="1_stun"]
+
+[node name="StunIndicator" type="Node2D"]
+position = Vector2(0, -56)
+z_index = 20
+script = ExtResource("1_stun")
+
+[node name="Stars" type="Node2D" parent="."]
+
+[node name="Label" type="Label" parent="."]
+offset_left = -36.0
+offset_top = -40.0
+offset_right = 36.0
+offset_bottom = -18.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.35, 1)
+theme_override_colors/font_outline_color = Color(0.2, 0.06, 0.01, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 13
+text = "STUN"
+horizontal_alignment = 1
+vertical_alignment = 1

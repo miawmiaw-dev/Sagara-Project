@@ -1,0 +1,159 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://scenes/enemies/elite_revenant.gd" id="1_elite"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
+size = Vector2(36, 72)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_detection"]
+radius = 280.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_attack"]
+size = Vector2(74, 66)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_health_bg"]
+bg_color = Color(0.06, 0.02, 0.09, 0.9)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.02, 0.01, 0.03, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_health_fill"]
+bg_color = Color(0.68, 0.2, 0.72, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[node name="EliteRevenant" type="CharacterBody2D" groups=["elite_enemy", "enemy"]]
+collision_layer = 4
+collision_mask = 5
+script = ExtResource("1_elite")
+
+[node name="Visual" type="Node2D" parent="."]
+
+[node name="Aura" type="Polygon2D" parent="Visual"]
+color = Color(0.6, 0.25, 0.9, 0.12)
+polygon = PackedVector2Array(0, -64, 42, -8, 26, 48, -26, 48, -42, -8)
+
+[node name="Cloak" type="Polygon2D" parent="Visual"]
+color = Color(0.16, 0.06, 0.22, 1)
+polygon = PackedVector2Array(-16, -40, 16, -40, 24, 16, 14, 40, -14, 40, -24, 16)
+
+[node name="Body" type="ColorRect" parent="Visual"]
+offset_left = -12.0
+offset_top = -28.0
+offset_right = 12.0
+offset_bottom = 28.0
+mouse_filter = 2
+color = Color(0.27, 0.1, 0.34, 1)
+
+[node name="ChestSigil" type="Polygon2D" parent="Visual"]
+color = Color(0.78, 0.38, 1, 0.9)
+polygon = PackedVector2Array(0, -21, 7, -11, 0, -1, -7, -11)
+
+[node name="Hood" type="Polygon2D" parent="Visual"]
+color = Color(0.1, 0.035, 0.14, 1)
+polygon = PackedVector2Array(-16, -38, 16, -38, 9, -58, -9, -58)
+
+[node name="HornLeft" type="Polygon2D" parent="Visual"]
+color = Color(0.12, 0.05, 0.16, 1)
+polygon = PackedVector2Array(-14, -52, -25, -68, -8, -58)
+
+[node name="HornRight" type="Polygon2D" parent="Visual"]
+color = Color(0.12, 0.05, 0.16, 1)
+polygon = PackedVector2Array(14, -52, 25, -68, 8, -58)
+
+[node name="EyeLeft" type="ColorRect" parent="Visual"]
+offset_left = -9.0
+offset_top = -32.0
+offset_right = -3.0
+offset_bottom = -26.0
+mouse_filter = 2
+color = Color(0.95, 0.45, 0.8, 1)
+
+[node name="EyeRight" type="ColorRect" parent="Visual"]
+offset_left = 3.0
+offset_top = -32.0
+offset_right = 9.0
+offset_bottom = -26.0
+mouse_filter = 2
+color = Color(0.95, 0.45, 0.8, 1)
+
+[node name="Telegraph" type="Label" parent="."]
+visible = false
+offset_left = -32.0
+offset_top = -82.0
+offset_right = 32.0
+offset_bottom = -44.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 0.55, 0.18, 1)
+theme_override_colors/font_outline_color = Color(0.08, 0, 0.12, 1)
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/font_size = 34
+text = "!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AttackLabel" type="Label" parent="."]
+visible = false
+offset_left = -120.0
+offset_top = -112.0
+offset_right = 120.0
+offset_bottom = -84.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 0.55, 0.18, 1)
+theme_override_colors/font_outline_color = Color(0.08, 0, 0.12, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 14
+text = "TEBASAN BAYANGAN"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+visible = false
+offset_left = -28.0
+offset_top = -46.0
+offset_right = 28.0
+offset_bottom = -38.0
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_health_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_health_fill")
+show_percentage = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_body")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+monitoring = false
+monitorable = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("RectangleShape2D_body")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 1
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CircleShape2D_detection")
+
+[node name="AttackArea" type="Area2D" parent="."]
+position = Vector2(37, 0)
+collision_layer = 0
+collision_mask = 1
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+shape = SubResource("RectangleShape2D_attack")
+
+[node name="CastPoint" type="Marker2D" parent="."]
+position = Vector2(0, -18)

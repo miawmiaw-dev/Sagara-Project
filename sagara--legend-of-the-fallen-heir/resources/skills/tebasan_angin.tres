@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="SpecialSkillData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/skills/special_skill_data.gd" id="1_skill"]
+
+[resource]
+script = ExtResource("1_skill")
+skill_name = "Tebasan Angin"
+style = 1
+energy_cost = 25
+cooldown = 1.0
+windup_time = 0.08
+active_time = 0.18
+recovery_time = 0.18
+damage_multiplier = 1.7
+knockback_multiplier = 1.2
+hitbox_size = Vector2(150, 80)
+spawn_offset = 54.0
+projectile_speed = 760.0
+projectile_range = 520.0
+projectile_size = Vector2(70, 30)
+projectile_pierces = true
+stun_duration = 0.2
+effect_color = Color(0.35, 0.92, 1, 1)
+animation_name = &"special"

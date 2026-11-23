@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="DodgeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/combat/dodge_data.gd" id="1_dodge"]
+
+[resource]
+script = ExtResource("1_dodge")
+duration = 0.36
+iframe_start = 0.04
+iframe_end = 0.26
+speed = 340.0
+cooldown = 0.38
+recovery_speed_multiplier = 0.35
+can_cancel_into_attack = true
+attack_cancel_start_time = 0.2
+can_cancel_into_jump = false
+jump_cancel_start_time = 0.24
+ghost_interval = 0.03
+ghost_fade_duration = 0.2
+ghost_alpha = 0.35

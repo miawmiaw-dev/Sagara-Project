@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/soul.gd" id="1_soul"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_soul"]
+size = Vector2(26, 26)
+
+[node name="Soul" type="Area2D"]
+z_index = 2
+collision_layer = 0
+collision_mask = 1
+script = ExtResource("1_soul")
+
+[node name="Visual" type="Node2D" parent="."]
+
+[node name="Glow" type="ColorRect" parent="Visual"]
+offset_left = -18.0
+offset_top = -18.0
+offset_right = 18.0
+offset_bottom = 18.0
+mouse_filter = 2
+color = Color(0.35, 0.9, 1, 0.18)
+
+[node name="Core" type="Polygon2D" parent="Visual"]
+color = Color(0.55, 0.95, 1, 0.95)
+polygon = PackedVector2Array(0, -10, 8, 0, 0, 10, -8, 0)
+
+[node name="Inner" type="Polygon2D" parent="Visual"]
+color = Color(0.9, 1, 1, 1)
+polygon = PackedVector2Array(0, -5, 4, 0, 0, 5, -4, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_soul")

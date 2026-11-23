@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://onu0nhufrdjv"]
+
+[ext_resource type="Script" uid="uid://l4msg16s5hf4" path="res://resources/weapons/weapon_data.gd" id="2_phkg1"]
+[ext_resource type="Script" uid="uid://bomr0fuoqxhhq" path="res://resources/weapons/attack_step_data.gd" id="2_step"]
+[ext_resource type="Resource" path="res://resources/skills/tebasan_bumi.tres" id="3_special_aoe"]
+[ext_resource type="Resource" path="res://resources/skills/tebasan_angin.tres" id="4_special_projectile"]
+
+[sub_resource type="Resource" id="Resource_step_1"]
+script = ExtResource("2_step")
+step_name = "Tebasan Pembuka"
+duration = 0.16
+hitbox_size = Vector2(50, 48)
+hitbox_start_time = 0.02
+combo_window_start = 0.05
+combo_window_end = 0.14
+
+[sub_resource type="Resource" id="Resource_step_2"]
+script = ExtResource("2_step")
+step_name = "Tusukan Lanjutan"
+duration = 0.2
+damage_multiplier = 1.15
+hitbox_size = Vector2(84, 24)
+hitbox_offset = 44.0
+hitbox_start_time = 0.035
+hitbox_lifetime = 0.07
+combo_window_end = 0.18
+knockback_multiplier = 0.5
+
+[sub_resource type="Resource" id="Resource_step_3"]
+script = ExtResource("2_step")
+step_name = "Tebasan Penutup"
+duration = 0.3
+damage_multiplier = 1.6
+hitbox_size = Vector2(64, 56)
+hitbox_offset = 36.0
+hitbox_start_time = 0.06
+hitbox_lifetime = 0.1
+combo_window_start = 0.18
+combo_window_end = 0.28
+knockback_multiplier = 2.0
+
+[resource]
+script = ExtResource("2_phkg1")
+combo_data = Array[ExtResource("2_step")]([SubResource("Resource_step_1"), SubResource("Resource_step_2"), SubResource("Resource_step_3")])
+special_skill = ExtResource("3_special_aoe")
+elang_special_skill = ExtResource("4_special_projectile")
